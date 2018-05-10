@@ -1,0 +1,18 @@
+/**
+ * ThemesRobot Plugin Admin Styles
+ */
+
+/**
+ * Settings Page
+ */
+.wrap .form-table {
+	margin-bottom: 2em;
+}
+
+@media screen and (max-width: 782px) {
+
+	#wpbody select#tr_shareit_sites_sel {
+		height: auto;	
+	}
+
+}

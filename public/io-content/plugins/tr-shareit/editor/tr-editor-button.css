@@ -1,0 +1,32 @@
+@font-face {
+	font-family: 'TRLogo';
+	src:url('fonts/TRLogo.eot');
+	src:url('fonts/TRLogo.eot?#iefix') format('embedded-opentype'),
+		url('fonts/TRLogo.woff') format('woff'),
+		url('fonts/TRLogo.ttf') format('truetype'),
+		url('fonts/TRLogo.svg#TRLogo') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.branch-3-8 #content_trShareItMenu_action, .mce-i-trshareit {
+	font: normal normal normal 130% "TRLogo" !important;
+	speak: none;
+	display: inline-block !important;
+	text-decoration: inherit;
+	width: 1em;
+	text-align: center;
+	text-transform: none;
+	color: #777;
+	vertical-align: top;
+}
+.branch-3-8 #content_trShareItMenu_action:hover #content_trShareItMenu_voice {
+	color: #444;
+}
+.branch-3-8 #content_trShareItMenu_action img {
+	display: none;
+}
+
+.branch-3-8 #content_trShareItMenu_action:before, .mce-i-trshareit:before {
+	content: '\e600';
+}

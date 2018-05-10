@@ -1,0 +1,45 @@
+/*
+ Theme Name:   BuzzBlog Child
+ Theme URI:    http://hercules-design.com
+ Description:  BuzzBlog Child Theme
+ Author:       Hercules Design
+ Author URI:   http://hercules-design.com
+ Template:     BUZZBLOG-theme
+ Version:      1.8
+ Tags:         awesome, beautiful, blog, design, facebook, flickr, instagram, minimalist, personal, responsive, clean, simple, twitter, visual, widget, wordpress
+ Text Domain:  BUZZBLOG-theme-child
+*/
+
+@import url("../BUZZBLOG-theme/style.css");
+
+.flexnav > li > a:after {content: '|'; margin-left:20px; margin-right: 12px;} 
+
+.flexnav > li > a {
+  padding: 30px 7px 30px 2px;
+}
+
+article{
+padding:60px; border:0px solid #dedede;
+  -webkit-box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.07);
+  box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.07);
+}
+
+.nav__primary {
+  border-top:0px solid;
+  border-bottom:1px solid;
+  border: 0px solid #dedede;
+}
+
+.gallery {
+  clear: both;
+}
+
+.gallery img {
+  max-width: 90%;
+  padding: 5%;
+}
+
+.syntaxhighlighter .code .container:before {
+  display: block;
+}

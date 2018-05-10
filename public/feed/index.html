@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?><rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0">
+
+<channel>
+	<title>The Ostrich</title>
+	
+	<link>https://www.ostricher.com</link>
+	<description>Break; Build; Repeat;</description>
+	<lastBuildDate>Sat, 09 Apr 2016 19:25:52 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.10</generator>
+<site xmlns="com-wordpress:feed-additions:1">73215231</site>	<feedburner:info uri="theostricher" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="https://www.ostricher.com/feed/" /><feedburner:feedFlare href="https://add.my.yahoo.com/rss?url=http%3A%2F%2Fwww.ostricher.com%2Ffeed%2F" src="http://us.i1.yimg.com/us.yimg.com/i/us/my/addtomyyahoo4.gif">Subscribe with My Yahoo!</feedburner:feedFlare><feedburner:feedFlare href="http://feedly.com/#subscription/feed/https://www.ostricher.com/feed/" src="http://s3.feedly.com/feedburner/feedly.png">Subscribe with Feedly</feedburner:feedFlare><feedburner:feedFlare href="https://www.subtome.com/#/subscribe?feeds=http%3A%2F%2Fwww.ostricher.com%2Ffeed%2F" src="http://www.subtome.com/subtome-feedburner.png">Subscribe with SubToMe</feedburner:feedFlare><feedburner:feedFlare href="http://www.bloglines.com/sub/https://www.ostricher.com/feed/" src="http://www.bloglines.com/images/sub_modern11.gif">Subscribe with Bloglines</feedburner:feedFlare><feedburner:feedFlare href="http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Fwww.ostricher.com%2Ffeed%2F" src="//www.netvibes.com/img/add2netvibes.gif">Subscribe with Netvibes</feedburner:feedFlare><feedburner:feedFlare href="http://www.bitty.com/manual/?contenttype=rssfeed&amp;contentvalue=http%3A%2F%2Fwww.ostricher.com%2Ffeed%2F" src="http://www.bitty.com/img/bittychicklet_91x17.gif">Subscribe with Bitty Browser</feedburner:feedFlare><feedburner:feedFlare href="http://www.dailyrotation.com/index.php?feed=http%3A%2F%2Fwww.ostricher.com%2Ffeed%2F" src="http://www.dailyrotation.com/rss-dr2.gif">Subscribe with Daily Rotation</feedburner:feedFlare><item>
+		<title>Go Plain Ubiquitous Plaintext Capture, Part 1: nvALT</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/e6hpSXPEvIk/</link>
+		<comments>https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/#respond</comments>
+		<pubDate>Sat, 09 Apr 2016 19:25:50 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Lifehacking]]></category>
+		<category><![CDATA[goplain]]></category>
+		<category><![CDATA[gtd]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1887</guid>
+		<description><![CDATA[In my Go Plain manifesto, I said that the first thing I plan to deal with is ubiquitous plaintext capture solution. So here I am, trying to deal with it, having some success on the Mac, mostly failing on mobile&#8230; This post is part 1 of several posts on the subject of plaintext capture. I&#160;<a href="https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/" class="read-more">Continue Reading</a>]]></description>
+	<script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script>			<content:encoded><![CDATA[<p>In my <a href="https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/">Go Plain manifesto</a>, I said that the first thing I plan to deal with is <em>ubiquitous plaintext capture solution</em>.</p>
+<p>So here I am, trying to deal with it, having some success on the Mac, mostly failing on mobile&#8230;</p>
+<p>This post is <em>part 1</em> of several posts on the subject of <em>plaintext capture</em>. I am dividing it to parts because it is still work-in-progress, and I wanted to share as I go along.</p>
+<p>To reiterate and elaborate, my expectations for a &#8220;ubiquitous plaintext capture solution&#8221; include:</p>
+<ul>
+<li>Available across all my devices. To prioritize: MacBook, Android phone, iPad, Windows laptop.</li>
+<li>Sync &#8220;captured items&#8221; across all said devices, given connectivity. Handle poor connectivity with dignity &#8211; we <em>are</em> talking about plaintext files here. Handle sync conflicts gracefully.</li>
+<li>The act of &#8220;capturing a piece of information&#8221; must be totally frictionless. This means as few clicks and taps as possible to get to &#8220;capture mode&#8221;. No messing with filing and categorizing a &#8220;captured item&#8221;. It should <em>just be there</em>, waiting for when I&#8217;m ready to deal with processing it.</li>
+</ul>
+<p>A tl;dr version of where I am with this, at the time of writing:</p>
+<ol>
+<li>Decided that &#8220;captured items&#8221; are plaintext Markdown-formatted files in my Dropbox <code>GoPlain/Notes</code> directory. Flat structure (e.g. no sub-directories) to force simplicity. Filename is note title, file text is note content.</li>
+<li>Decided on <a href="http://brettterpstra.com/projects/nvalt/">nvALT</a> for capturing notes on OS X. Been using it for a couple of weeks. It&#8217;s perfect!</li>
+<li>Became frustrated with the options I evaluated on Android. Remained unsolved for now <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f641.png" alt="🙁" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</li>
+<li>Got overwhelmed with <a href="http://brettterpstra.com/ios-text-editors/">options on the iPad</a> (iOS in general). Got to <a href="https://twitter.com/nvNotesApp/status/715197183130279937" class="broken_link" rel="nofollow">join nvNotes beta testing</a>. Loving it so far!</li>
+<li>Didn&#8217;t do anything with my Windows laptop. It just sat there, streaming my Google Music library. Just as important for my productivity <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> !</li>
+</ol>
+<p>In this part, I go into some detail about nvALT and my &#8220;ideal capture experience&#8221;. If you stick around, there might also be a mobile rant <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<p><span id="more-1887"></span></p>
+<div id="tr_shareit-18870" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">@nvALTApp is my ideal @goplaintxt capture solution on #OSX</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=%40nvALTApp+is+my+ideal+%40goplaintxt+capture+solution+on+%23OSX https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/" data-name="Go Plain Ubiquitous Plaintext Capture, Part 1: nvALT" data-description="@nvALTApp is my ideal @goplaintxt capture solution on #OSX"data-picture="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/go-plain-capture.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/&name=Go Plain Ubiquitous Plaintext Capture, Part 1: nvALT&description=%40nvALTApp+is+my+ideal+%40goplaintxt+capture+solution+on+%23OSX&picture=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/go-plain-capture.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/&media=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/go-plain-capture.png?resize=150%2C150&description=%40nvALTApp+is+my+ideal+%40goplaintxt+capture+solution+on+%23OSX" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=%40nvALTApp+is+my+ideal+%40goplaintxt+capture+solution+on+%23OSX&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<h3>nvALT and my ideal capture experience</h3>
+<p>How would an ideal &#8220;capture mode&#8221; look like, if I could have it my way?</p>
+<p>The short answer &#8211; exactly like <a href="http://brettterpstra.com/projects/nvalt/">nvALT on OS X</a>.</p>
+<p><img src="https://i0.wp.com/brettterpstra.com/uploads/2011/01/nvALT2.0Screenshot.jpg?w=900" alt="nvALT 2.0" title="nvALT 2.0" data-recalc-dims="1" /></p>
+<p>For those who are not familiar with it, here&#8217;s a short description of the relevant features:</p>
+<p>You start with an empty search box, above a list of previously &#8220;captured items&#8221; (let&#8217;s call them <em>notes</em> from now, OK?).</p>
+<p>You start typing a title for the note you&#8217;re about to capture (<em>right in the search box</em>).</p>
+<p>The list of existing notes is <em>instantaneously</em> filtered using your title as search query (really, also for many thousands of notes, and it&#8217;s an excellent <em>full text search</em>).</p>
+<p>Often, you see a matching note that is relevant to what you want to capture (e.g., append something to an existing running list). In that case, you can select that result and edit the existing note. If you really want to create a new note, you just hit <em>Enter</em>, and a new note with the title as a filename is created.</p>
+<p>In both cases (edit existing or create new), the cursor is immediately place at the end of the note body, so you can keep typing the content.</p>
+<p>This might sound like more clutter than an alternative that just gives you a blank text box, but it really isn&#8217;t.</p>
+<p>If all you want to do is to write your note &#8212; you just do it (title, <em>Enter</em>, content, done). Ignore the searching that happens &#8211; it doesn&#8217;t slow you down.</p>
+<p>From my experience using it so far, the searching is <strong><em>so</em></strong> useful, that I take advantage of it more often than not.</p>
+<p>The amazing thing about nvALT is how fast it is. I know I&#8217;m mixing here between &#8220;requirements&#8221; and a specific solution, but the <em>frictionless</em> requirement can be a subtle beast.</p>
+<p>I&#8217;d like to use nvALT as an example of how speed is important in removing friction.</p>
+<p>Assuming nvALT starts on login, and you configure a keyboard shortcut to activate it (you should!), <strong>you&#8217;re always less than 1 second away from capturing a note</strong>.</p>
+<p>It&#8217;s hard to put into words how significant it is that hitting &#8984;&#8997;<strong>N</strong> will <em>reliably</em> put me into capture mode <em>so fast</em>. If it took 3 seconds, or required another operation, or crashed 0.1% of the time, I know I would just do it less. Subconsciously.</p>
+<div id="tr_shareit-18871" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">Using @nvALTApp with a global Hotkey &#8211; you&#8217;re always less than 1 second away from capturing a note!</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=Using+%40nvALTApp+with+a+global+Hotkey+%26%238211%3B+you're+always+less+than+1+second+away+from+capturing+a+note%21 https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/" data-name="Go Plain Ubiquitous Plaintext Capture, Part 1: nvALT" data-description="Using @nvALTApp with a global Hotkey &#8211; you&#039;re always less than 1 second away from capturing a note!"data-picture="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/go-plain-capture.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/&name=Go Plain Ubiquitous Plaintext Capture, Part 1: nvALT&description=Using+%40nvALTApp+with+a+global+Hotkey+%26%238211%3B+you're+always+less+than+1+second+away+from+capturing+a+note%21&picture=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/go-plain-capture.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/&media=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/go-plain-capture.png?resize=150%2C150&description=Using+%40nvALTApp+with+a+global+Hotkey+%26%238211%3B+you're+always+less+than+1+second+away+from+capturing+a+note%21" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=Using+%40nvALTApp+with+a+global+Hotkey+%26%238211%3B+you're+always+less+than+1+second+away+from+capturing+a+note%21&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>Oh, did I mention <strong><em>it&#8217;s free</em></strong>?! (but if you like it, <a href="http://brettterpstra.com/donate/?ppid=78YFVY22AWW42&amp;submit=">consider donating to the developers</a>! They need coffee and/or beer!)</p>
+<h3>My nvALT set up</h3>
+<p>Of course, I configured a global &#8220;bring-to-front&#8221; Hotkey.</p>
+<p>To play nice with &#8220;everything else&#8221;, I changed the nvALT settings to manage the notes as individual plaintext files in a new Dropbox directory (<code>GoPlain/Notes</code>). If you intend to interact with the notes from other apps, it is recommended to uncheck the <em>Confirm note files removed in the Finder</em> checkbox. Otherwise, every time you delete a note from anywhere, nvALT will ask you if you&#8217;re sure you want to remove it.</p>
+<p>Also, since I mostly work with Markdown-formatted notes, I added the <code>md</code> extension to the list, and set it as the default extension. Setting it as the default will make nvALT save new notes with that extension. This is what I want, because if I open these notes with other applications (such as Sublime Text), I get correct syntax detection.</p>
+<p>As a matter of personal preference, I changed the fonts &amp; colors. I chose the <code>AndaleMono 13</code>, and a dark colors theme.</p>
+
+<a href='https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/nvalt-prefs-general-png/'><img width="300" height="288" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-prefs-general.png?fit=300%2C288" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-prefs-general.png?w=366 366w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-prefs-general.png?resize=300%2C288 300w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/nvalt-prefs-notes-storage-png/'><img width="228" height="300" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-prefs-notes-storage.png?fit=228%2C300" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-prefs-notes-storage.png?w=368 368w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-prefs-notes-storage.png?resize=228%2C300 228w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-prefs-notes-storage.png?resize=326%2C430 326w" sizes="(max-width: 228px) 100vw, 228px" /></a>
+<a href='https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/nvalt-prefs-theme-png/'><img width="300" height="300" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/04/nvalt-prefs-theme.png?fit=300%2C300" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/04/nvalt-prefs-theme.png?w=415 415w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/04/nvalt-prefs-theme.png?resize=150%2C150 150w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/04/nvalt-prefs-theme.png?resize=300%2C300 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/04/nvalt-prefs-theme.png?resize=80%2C80 80w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+
+<a href='https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/nvalt-in-action-png/'><img width="300" height="136" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-in-action.png?fit=300%2C136" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-in-action.png?w=733 733w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-in-action.png?resize=300%2C136 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/nvalt-in-action.png?resize=573%2C260 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<h3>What about mobile?</h3>
+<p>OK, so what about Android phone, iPad? Is nvALT available on these platforms?</p>
+<p>Unfortunately, no&#8230; And this is where the cookie crumbles <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f641.png" alt="🙁" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<p>I spent many hours and moneys on trying out a bunch of apps on Android and iPad. I didn&#8217;t even get to dealing with Windows yet, or testing things under limited connectivity and conflicts.</p>
+<p>At least with the nvALT-Dropbox set up I have &#8220;raw&#8221; access to the notes from all devices and platforms, since Dropbox is available on all. That&#8217;s <em>something</em> &#8211; I have <em>ubiquitous read/write access</em>, but still with great friction (and no real offline access on Android and iOS).</p>
+<p><a href="https://twitter.com/nvNotesApp/status/715197183130279937" class="broken_link" rel="nofollow">I&#8217;m beta testing nvNotes on the iPad</a>, following a <a href="https://twitter.com/ttscoff/status/713793674727981057">recommendation by Brett Terpstra</a>, and it looks promising. Will update on that after I&#8217;m done testing, in a separate post.</p>
+<p>On Android, though, I couldn&#8217;t find anything that delivers anything close to the experience I&#8217;m looking for&#8230;</p>
+<p>This is so frustrating.</p>
+<p>Ideally, I would like an Android port of nvALT. If anyone comes across such a thing, please let me know!</p>
+<p>A close second best would be some kind of Google Keep / Dropbox integration. I like Google Keep &#8211; it&#8217;s nice, simple, and supports quick capture and full text search. If it could do 2-way-sync with a Dropbox directory, it would practically be a nvALT-clone!</p>
+<p>Alas, Google Keep, as it is now, is a closed garden. A prison for your own data.</p>
+<p>So I <a href="https://productforums.google.com/d/msg/docs/iCd9QSoqwms/_17hFVRnCAAJ">submitted a Google Keep feature request</a>, but haven&#8217;t heard anything. If you like the idea &#8211; please <em>+1</em> my feature request <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> . If Google Keep had some kind of open API, someone (me?) could even build such a thing independently! But, alas! There is no API! So, also <a href="https://productforums.google.com/d/msg/docs/iCd9QSoqwms/bwRoLb7X8GIJ"><em>+1</em> the  API feature request</a> <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<p><a href="http://simplenote.com">Simplenote</a> could also be a nice solution. They have Dropbox sync (only in premium, which is not offered anymore, unless you ask for it). tl;dr &#8211; it&#8217;s not good enough. Dropbox sync requires manual triggering only from the web app. I tested it with just a few notes, and I ran into severe note corruption that was enough for me to lose trust in that service. Credit where it&#8217;s due &#8211; responsive support team that enabled the premium feature on request, and is investigating the corruption I observed.</p>
+<p>So I&#8217;m still floating as far as Android is concerned&#8230; Open for suggestions! Anyone?</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1887</post-id>	<feedburner:origLink>https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/</feedburner:origLink></item>
+		<item>
+		<title>Get Safe Paths From Arbitrary Strings In Python</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/ojvty7b_Yvs/</link>
+		<comments>https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/#respond</comments>
+		<pubDate>Wed, 30 Mar 2016 17:59:05 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Software Engineering]]></category>
+		<category><![CDATA[ostrichlib]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1881</guid>
+		<description><![CDATA[Sometimes, all you want to do with an arbitrary string, is to use it to create a file or a directory. Really, that&#8217;s all. Nothing too special about it, right? Alas! This is the root of all evil! Arbitrary strings are dangerous, and should be handled with the utmost care, as if they were explosives,&#160;<a href="https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/" class="read-more">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>Sometimes, all you want to do with an arbitrary string, is to use it to create a file or a directory. Really, that&#8217;s all. Nothing too special about it, right?</p>
+<p>Alas! This is the root of all evil!</p>
+<p>Arbitrary strings are dangerous, and should be handled with the utmost care, as if they were explosives, or Frank Underwood&#8217;s new liver! (<em>sorry</em>)</p>
+<p>Wait, but, how exactly are they to be handled? And why should you reimplement this apparently basic, but practically risky, functionality every time you need it?</p>
+<p>This is exactly what my <a href="https://github.com/TheOstrichIO/ostrichlib/blob/02c7168bad8f31a34de480fa0bb21dba8d6f33d8/ostrich/utils/text.py#L43-L70"><code>ostrich.utils.text.get_safe_path()</code> OstrichLib function</a> set out to solve once and for all <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>It&#8217;s already available in <a href="https://github.com/TheOstrichIO/ostrichlib">Ostrich Lib</a> in <a href="https://github.com/TheOstrichIO/ostrichlib/releases/tag/v0.0">release v0.0</a>. It&#8217;s also <a href="https://pypi.python.org/pypi/ostrichlib">released to PyPI</a>, meaning you can get it now with <code>pip install ostrichlib</code>. It&#8217;s <a href="https://travis-ci.org/TheOstrichIO/ostrichlib/builds/118493821">tested (using Travis CI)</a> against Python 2 &amp; 3, and requires only the <a href="http://python-future.org">future library</a> as an external dependency (which <a href="http://python-future.org/compatible_idioms.html">makes everyone happier with Python 2 / Python 3 compatibility</a>). Detailed library documentation are available via <a href="http://ostrichlib.readthedocs.org/en/stable/">Read the Docs</a>. Hurray!</p>
+<p>I would love to get some review from others for my solution, given the risky nature of the problem.</p>
+<p><span id="more-1881"></span></p>
+<div id="tr_shareit-18812" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">Using arbitrary strings as filenames? Hmmm&#8230;</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=Using+arbitrary+strings+as+filenames%3F+Hmmm%26%238230%3B https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/" data-name="Get Safe Paths From Arbitrary Strings In Python" data-description="Using arbitrary strings as filenames? Hmmm&#8230;"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/&name=Get Safe Paths From Arbitrary Strings In Python&description=Using+arbitrary+strings+as+filenames%3F+Hmmm%26%238230%3B&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150&description=Using+arbitrary+strings+as+filenames%3F+Hmmm%26%238230%3B" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=Using+arbitrary+strings+as+filenames%3F+Hmmm%26%238230%3B&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<h3>What does it do?</h3>
+<p>Since it&#8217;s pretty straight forward, a demo should do:</p>
+<pre class="brush: python; title: ; notranslate">
+itamar@legolas 20:37:06 ~&gt;docker run -it --rm python:3.5 bash
+root@292a5eeed6e9:/# pip install --upgrade pip ipython
+Collecting pip
+  Downloading pip-8.1.1-py2.py3-none-any.whl (1.2MB)
+...
+Successfully installed ipython-4.1.2 ipython-genutils-0.1.0 path.py-8.1.2 pexpect-4.0.1 pickleshare-0.6 pip-8.1.1 ptyprocess-0.5.1 setuptools-20.3.1 simplegeneric-0.8.1 traitlets-4.2.1 pip-8.1.1
+root@292a5eeed6e9:/# pip install ostrichlib
+Collecting ostrichlib
+  Downloading ostrichlib-0.0.0.dev3-py2.py3-none-any.whl
+Installing collected packages: ostrichlib
+Successfully installed ostrichlib-0.0.0.dev3
+root@292a5eeed6e9:/# ipython
+Python 3.5.0 (default, Sep 14 2015, 20:19:17)
+Type &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+
+...
+
+In [1]: from ostrich.utils.text import get_safe_path
+
+In [2]: get_safe_path('foo.bar')
+Out[2]: 'foo.bar'
+
+In [3]: get_safe_path('a/b/c/../foo.bar')
+Out[3]: 'a_b_c_.._foo.bar'
+
+In [4]: get_safe_path('&lt;1!2:3@4.{5}-6_7(8)9=0&gt;')
+Out[4]: '_1_2_3_4._5_-6_7_8_9=0_'
+
+In [5]: get_safe_path(&quot;let's dö söme funky Ünicöde? Yeäh!&quot;)
+Out[5]: 'let_s_do__so_me_funky_U_nico_de__Yea_h_'
+
+In [6]: len(get_safe_path(''.join('a' for _ in range(5000))))
+Out[6]: 255
+
+In [7]: get_safe_path(' foo/bar.baz') == get_safe_path('foo$bar.baz ')
+Out[7]: True
+</pre>
+<p>Essentially, it takes your shiny string, and replaces everything that&#8217;s not in a whitelist with underscores. The whitelist includes alphanumeric characters, <code>-</code>, <code>.</code>, and <code>=</code> &#8211; which are arbitrary characters I decided should be allowed. Surrounding spaces are stripped before conversions.</p>
+<p>Some extra nifty things it does:</p>
+<ol>
+<li><a href="http://unicode.org/reports/tr15/#Norm_Forms">Unicode NFKD normalization</a> before conversions. This means that evil unicode characters that have ASCII-look-alikes will be replaced with those ASCII&#8217;s! (see example 5 above)</li>
+<li>Truncating resulting string at 255 characters, which is the <a href="https://en.wikipedia.org/wiki/Comparison_of_file_systems#Limits">standard entry name length limit on most common filesystems</a>. (see example 6 above)</li>
+<li>Make sure that the resulting string isn&#8217;t empty, or just a bunch of dots (<code>.</code>) (which may cause <a href="https://www.owasp.org/index.php/Path_Traversal">path traversal</a>). Such a condition will trigger an exception.</li>
+</ol>
+<p>See the <a href="https://github.com/TheOstrichIO/ostrichlib/blob/c2ccb266853b87460e4f5ecc88467a87f9b5c1a2/tests/utils_tests/test_text.py">tests file</a> for more.</p>
+<p>This is all accomplished with very little code, as you can see <a href="https://github.com/TheOstrichIO/ostrichlib/blob/02c7168bad8f31a34de480fa0bb21dba8d6f33d8/ostrich/utils/text.py#L43-L70">in the source file</a> (which contains more documentation than code),<br />
+while being compatible with both Python 2 and Python 3 (as far as I can tell at least; that&#8217;s what Travis-CI says).</p>
+<div id="tr_shareit-18813" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">OstrichLib provides a utility Python function for converting an arbitrary string to a safe path part, weeeee</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=OstrichLib+provides+a+utility+Python+function+for+converting+an+arbitrary+string+to+a+safe+path+part%2C+weeeee https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/" data-name="Get Safe Paths From Arbitrary Strings In Python" data-description="OstrichLib provides a utility Python function for converting an arbitrary string to a safe path part, weeeee"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/&name=Get Safe Paths From Arbitrary Strings In Python&description=OstrichLib+provides+a+utility+Python+function+for+converting+an+arbitrary+string+to+a+safe+path+part%2C+weeeee&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150&description=OstrichLib+provides+a+utility+Python+function+for+converting+an+arbitrary+string+to+a+safe+path+part%2C+weeeee" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=OstrichLib+provides+a+utility+Python+function+for+converting+an+arbitrary+string+to+a+safe+path+part%2C+weeeee&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<h3>Discussion</h3>
+<p>As I wrote above, I am very interested in review from others, as I want this to be bullet proof.</p>
+<p>Beyond that, it is important to understand that this function is still stupid. It takes a string, and returns another string. It has no awareness of files and directories, and does not want to be aware of such things. The fact that a string is <em>safe</em> to use as a filename, does not mean that <em>you should</em> write a file there, or create a directory there. That&#8217;s an application decision. Do you want to first check for existence? Create parent directories? Guarantee uniqueness somehow? This is not in the scope of this function &#8211; it&#8217;s <em>your responsibility</em>.</p>
+<p>Specifically, regarding <em>uniqueness</em>, it is important to understand that these conversions make it so that multiple input strings may result the same <em>safe</em> output string, as you can see in example 7 above. Whether this is an issue or not depends, again, on the application.</p>
+<p>If your application handles <em>truly</em> arbitrary strings, and needs to map them to <em>truly unique</em> paths in the same namespace (e.g. parent directory), then I can think of two possible approaches:</p>
+<ol>
+<li>Use my function, but manage a mapping in your application from the safe name to the original name. If the function returns a result that&#8217;s already in that mapping, but is for a different original name, then append a <code>'.%d' % n</code> to the safe name for increasing values of <code>n</code>, until the modified safe name is &#8220;available&#8221;. You can probably wrap this in a decorator to simplify the using code. It&#8217;s like a smartass cache for the function result.</li>
+<li>Why bother with these conversions at all? Just hash the crap out of the input strings!</li>
+</ol>
+<pre class="brush: python; title: ; notranslate">
+root@7c65e882b3c1:/# ipython
+Python 3.5.0 (default, Sep 14 2015, 20:19:17)
+Type &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+
+...
+
+In [1]: from hashlib import sha1
+
+In [2]: sha1('../foo/../bar.baz?!'.encode('utf8')).hexdigest()
+Out[2]: 'a810bb4a5694ef259780b1be1fcb7776dc8d090e'
+</pre>
+<div id="tr_shareit-18814" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">To hash or not to hash. That&#8217;s a silly question. Guess what. It depends!</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=To+hash+or+not+to+hash.+That's+a+silly+question.+Guess+what.+It+depends%21 https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/" data-name="Get Safe Paths From Arbitrary Strings In Python" data-description="To hash or not to hash. That&#039;s a silly question. Guess what. It depends!"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/&name=Get Safe Paths From Arbitrary Strings In Python&description=To+hash+or+not+to+hash.+That's+a+silly+question.+Guess+what.+It+depends%21&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/ostrichlib-safe-path.png?resize=150%2C150&description=To+hash+or+not+to+hash.+That's+a+silly+question.+Guess+what.+It+depends%21" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=To+hash+or+not+to+hash.+That's+a+silly+question.+Guess+what.+It+depends%21&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>The downsides of the hashing approach, as I see them:</p>
+<ul>
+<li>You completely lose &#8220;visual&#8221; relation between the input and output strings. With the normalization approach, the output string usually looks like the input string.</li>
+<li>While collisions are rare, they can happen. Do you want to rely on chance? Or will you implement the safety mechanism I described anyway?</li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1881</post-id>	<feedburner:origLink>https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/</feedburner:origLink></item>
+		<item>
+		<title>Migrating Kambatz Meteor App to Galaxy</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/Vu2_7h7p5LU/</link>
+		<comments>https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/#respond</comments>
+		<pubDate>Sun, 27 Mar 2016 17:04:41 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Software Engineering]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[meteor]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1863</guid>
+		<description><![CDATA[A few months back, MDG announced Meteor Galaxy, their &#8220;cloud platform for operating and managing Meteor applications&#8221;. It was only for development teams and enterprise at the time. Earlier this month they released One Galaxy for Everyone, including a basic &#8220;pay-as-you-go&#8221; plan for $0.035/container-hour. Now, I can&#8217;t say I was unhappy with the free hosting&#160;<a href="https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/" class="read-more">Continue Reading</a>]]></description>
+	<script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script>			<content:encoded><![CDATA[<p>A few months back, <a href="http://info.meteor.com/blog/announcing-meteor-galaxy">MDG announced Meteor Galaxy</a>, their &#8220;cloud platform for operating and managing Meteor applications&#8221;. It was only for development teams and enterprise at the time. Earlier this month <a href="http://info.meteor.com/blog/one-galaxy-for-everyone">they released One Galaxy for Everyone</a>, including a basic &#8220;pay-as-you-go&#8221; plan for $0.035/container-hour.</p>
+<p>Now, I can&#8217;t say I was unhappy with the <em>free</em> hosting on meteor.com, but along with this Galaxy release they also decided to shutdown the free hosting on meteor.com. So I had no choice, but to migrate my <a href="https://www.ostricher.com/2015/11/kambatz-the-app-im-building-to-learn-meteor/">Kambatz app</a>.</p>
+<p>I am aware that there are multiple Meteor hosting options out there. I am going with Galaxy, for now, because:</p>
+<ol>
+<li>It looks like the path of least effort <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></li>
+<li>I did not see other viable <em>free</em> options, and this seems to be affordable.</li>
+<li>When Galaxy was launched on October 2015, I watched <a href="https://www.youtube.com/watch?v=xIc3WT6kAVw">a talk by MDG&#8217;s Matt DeBergalis on AWS re:Invent</a> about the Galaxy architecture. It&#8217;s built on top of AWS Elastic Container Service (ECS), and it was fascinating. If I can have a chance to experience it from some perspective (e.g., an end-user), maybe I can learn more about it. In any case, the alternative I had in mind is to set up my own Meteor-in-Docker on AWS-ECS, to minimize costs, so this seems pretty close to that. Maybe if I later transition, it will be smoother <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</li>
+<li>Supposedly, since I migrated before March 25, I should get a $25 credit on my Galaxy account <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> . Haven&#8217;t seen it yet though.</li>
+</ol>
+<p>One thing to keep in mind is that Galaxy does not include MongoDB hosting. You&#8217;ll need to find another place to host your MongoDB, like <a href="https://mlab.com">mLab</a>.</p>
+<p><span id="more-1863"></span></p>
+<div id="tr_shareit-18635" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">Migrating apps from the free Meteor hosting to Meteor Galaxy</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=Migrating+apps+from+the+free+Meteor+hosting+to+Meteor+Galaxy https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/" data-name="Migrating Kambatz Meteor App to Galaxy" data-description="Migrating apps from the free Meteor hosting to Meteor Galaxy"data-picture="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/&name=Migrating Kambatz Meteor App to Galaxy&description=Migrating+apps+from+the+free+Meteor+hosting+to+Meteor+Galaxy&picture=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/&media=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy.png?resize=150%2C150&description=Migrating+apps+from+the+free+Meteor+hosting+to+Meteor+Galaxy" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=Migrating+apps+from+the+free+Meteor+hosting+to+Meteor+Galaxy&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<h3>My migration steps</h3>
+<p>See below for annotated screenshots of most steps as well.</p>
+<ol>
+<li>Create account on <a href="https://www.meteor.com/galaxy">Meteor Galaxy</a> (or use existing Meteor account). I chose the &#8220;Basic&#8221; plan.</li>
+<li>Create account on <a href="https://mlab.com">mLab</a>.</li>
+<li>Create new database in mLab account. Prefer AWS us-east-1, as it is the same zone used by Meteor Galaxy.</li>
+<li>Create a user for the newly created database (note this isn&#8217;t the same as the mLab user &#8211; don&#8217;t use the same username / password).</li>
+<li>Write down the MongoDB URI (AKA &#8220;connection string&#8221;).</li>
+<li>Create a <code>settings.json</code> file in the root of the Meteor project (e.g. <code>~/work/kambatz/settings.json</code>), and put in the MongoDB URI for the Galaxy deployment target (replacing the <code>&lt;dbuser&gt;</code> and <code>&lt;dbpassword&gt;</code> and <code>&lt;dburl&gt;</code> with your real details of course). See content below.</p>
+</li>
+<li>
+<p>Deploy the app to Galaxy, using a meteorapp.com subdomain: <code>DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy kambatz.meteorapp.com --settings settings.json</code>. Fill in your Galaxy username (not email) and password.</p>
+</li>
+<li>Done. Go see your app serving on <code>http://yourapp.meteorapp.com</code>.</li>
+</ol>
+<p><pre class="brush: jscript; title: settings.json; notranslate">
+{
+  &quot;galaxy.meteor.com&quot;: {
+    &quot;env&quot;: {
+      &quot;MONGO_URL&quot;: &quot;mongodb://&lt;dbuser&gt;:&lt;dbpassword&gt;@&lt;dburl&gt;&quot;
+    }
+  }
+}
+</pre>
+
+<a href='https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/meteor-galaxy-plans-png/'><img width="300" height="76" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-plans.png?fit=300%2C76" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-plans.png?w=1248 1248w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-plans.png?resize=300%2C76 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-plans.png?resize=1024%2C260 1024w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-plans.png?resize=980%2C249 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-plans.png?resize=573%2C146 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+
+<a href='https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/mlab-dashboard-png/'><img width="300" height="96" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-dashboard.png?fit=300%2C96" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-dashboard.png?w=1161 1161w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-dashboard.png?resize=300%2C96 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-dashboard.png?resize=1024%2C329 1024w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-dashboard.png?resize=980%2C315 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-dashboard.png?resize=573%2C184 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/mlab-createdb-1-png/'><img width="300" height="198" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-1.png?fit=300%2C198" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-1.png?w=704 704w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-1.png?resize=300%2C198 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-1.png?resize=700%2C465 700w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-1.png?resize=573%2C378 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+
+<a href='https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/mlab-createdb-2-png/'><img width="243" height="300" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-2.png?fit=243%2C300" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-2.png?w=717 717w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-2.png?resize=243%2C300 243w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-2.png?resize=594%2C735 594w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-createdb-2.png?resize=348%2C430 348w" sizes="(max-width: 243px) 100vw, 243px" /></a>
+<a href='https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/mlab-db-details-png/'><img width="300" height="117" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-db-details.png?fit=300%2C117" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-db-details.png?w=1132 1132w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-db-details.png?resize=300%2C117 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-db-details.png?resize=1024%2C400 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-db-details.png?resize=980%2C383 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/mlab-db-details.png?resize=573%2C224 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+
+<a href='https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/meteor-galaxy-dashboard-png/'><img width="300" height="48" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-dashboard.png?fit=300%2C48" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-dashboard.png?w=1305 1305w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-dashboard.png?resize=300%2C48 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-dashboard.png?resize=1024%2C162 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-dashboard.png?resize=980%2C155 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2016/03/meteor-galaxy-dashboard.png?resize=573%2C91 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<h3>Summary</h3>
+<p>That&#8217;s how I migrated my Kambatz app from the free (alas, deprecated) Meteor.com hosting to the new Meteor Galaxy hosting.</p>
+<p>I did not cover DNS configuration for serving the app from custom domains, since I don&#8217;t care about this at the moment. I&#8217;m perfectly fine with using the meteorapp.com subdomain for development. For completeness, there&#8217;s <a href="https://galaxy.meteor.com/help/configuring-dns">a support article on configuring DNS</a> on Galaxy help.</p>
+<p>Also, since this hosting isn&#8217;t free, I am stopping my app when I&#8217;m not actively developing it to reduce costs. This means that http://kambatz.meteorapp.com will be up sometimes, but not always. Tough. I&#8217;m sure many of you relied on it <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f61b.png" alt="😛" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1863</post-id>	<feedburner:origLink>https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/</feedburner:origLink></item>
+		<item>
+		<title>Go Plain: My Simplicity-Driven Personal Productivity System</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/h3vW4-bwHjw/</link>
+		<comments>https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/#respond</comments>
+		<pubDate>Thu, 24 Mar 2016 17:17:32 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Lifehacking]]></category>
+		<category><![CDATA[goplain]]></category>
+		<category><![CDATA[gtd]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1855</guid>
+		<description><![CDATA[In the previous post, I announced that I am ready to reinvent my personal productivity system. Today, I present Go Plain: My simplicity-driven personal productivity system. Well, it&#8217;s not yet a &#8220;personal productivity system&#8221;. It&#8217;s the working title for my work-in-progress system, and this post is a high-level &#8220;manifesto&#8221; for this system. I use &#8220;manifesto&#8221;&#160;<a href="https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/" class="read-more">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>In <a href="https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/">the previous post</a>, I announced that I am ready to reinvent my personal productivity system.</p>
+<p>Today, I present <strong><em>Go Plain</em></strong>: My <em>simplicity</em>-driven personal productivity system. Well, it&#8217;s not <em>yet</em> a &#8220;personal productivity system&#8221;. It&#8217;s the working title for my work-in-progress system, and this post is a high-level &#8220;manifesto&#8221; for this system. I use &#8220;manifesto&#8221; here loosely, and mostly mean &#8220;high level roadmap and requirements&#8221;. Just thought it was a fun word to use <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<p>You can refer to the <a href="https://www.ostricher.com/projects/go-plain/">Go Plain project page</a> for an always up-to-date list of posts related to this project.</p>
+<p><span id="more-1855"></span></p>
+<p><strong>Disclaimer:</strong></p>
+<p>This is <strong>my personal take</strong> on a personal productivity system. As such, it is going to be highly customized to me, my needs, my lifestyle, and my preferences.</p>
+<p>I am sharing it here because:</p>
+<ol>
+<li>I want to <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></li>
+<li>I believe my situation is not <em>completely</em> unique, so maybe others may benefit from what I share.</li>
+</ol>
+<p>Once I have more pieces of my system in place, I plan to come up with a profile of who I think this should work for, and whom it likely won&#8217;t. I can guarantee that no one will be able to take my system <em>as is</em> and apply it smoothly. It will surely require cherry-picking or some kind of adaptation.</p>
+<div id="tr_shareit-18556" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">Simple is good. Friction is bad.</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=Simple+is+good.+Friction+is+bad. https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/" data-name="Go Plain: My Simplicity-Driven Personal Productivity System" data-description="Simple is good. Friction is bad."data-picture="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/goplain.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/&name=Go Plain: My Simplicity-Driven Personal Productivity System&description=Simple+is+good.+Friction+is+bad.&picture=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/goplain.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/&media=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/goplain.png?resize=150%2C150&description=Simple+is+good.+Friction+is+bad." target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=Simple+is+good.+Friction+is+bad.&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<h3>Go Plain Manifesto</h3>
+<ul>
+<li>Simple is good, friction is bad.</li>
+<li>&#8220;Less is More&#8221;. Use as few &#8220;tools&#8221; as possible, but not fewer than necessary to make things work smoothly.</li>
+<li>It&#8217;s important to be able to &#8220;be productive&#8221;, independent of which platform and device I happen to use, screen size and resolution, or online / offline status. This portability deserves a lot of thought and effort, but it has limits. Simplicity should not suffer <em>too much</em>. It is not less important to acknowledge the limits, and prioritize.</li>
+<li>Small tools that do one thing well are usually easier to compose in a system, compared to big multipurpose tools that do many things &#8220;OK&#8221;.</li>
+<li>Flexibility is an asset. Things will definitely change, in unexpected ways. A flexible, <em>loosely coupled</em> system will be easier to adapt.</li>
+<li>Good <em>search</em> wins over good <em>filing &amp; categorization</em>, every time, on every digital platform.</li>
+<li>Wait before automating. Avoid &#8220;forcing automation&#8221;. Let it emerge from natural usage.</li>
+<li>Prefer widely adopted services over niche ones. They tend to stick around longer, and have wider platform support. For example, Dropbox over SugarSync for cloud-based file syncing.</li>
+<li>Prefer sticking to the basic, essential, stable &amp; robust feature of chosen services. Esoteric features might be useful for esoteric scenarios, but the features may disappear, or be unreliable for the long run.</li>
+<li>Open source is better than proprietary, but it&#8217;s definitely OK to pay for good products and services (<em>&#8220;open source&#8221;</em> doesn&#8217;t have to be <em>&#8220;free&#8221;</em>).</li>
+</ul>
+<h3>A bit more concrete principles and requirements</h3>
+<p>The manifesto is quite high level. This is intended. There are more concrete guiding principles and derived requirements that I feel belong here, but not at the &#8220;manifesto&#8221; level.</p>
+<div id="tr_shareit-18557" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">Plaintext files with Markdown formatting are the heart of the Go Plain system</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=Plaintext+files+with+Markdown+formatting+are+the+heart+of+the+Go+Plain+system https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/" data-name="Go Plain: My Simplicity-Driven Personal Productivity System" data-description="Plaintext files with Markdown formatting are the heart of the Go Plain system"data-picture="https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/goplain.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/&name=Go Plain: My Simplicity-Driven Personal Productivity System&description=Plaintext+files+with+Markdown+formatting+are+the+heart+of+the+Go+Plain+system&picture=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/goplain.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/&media=https://i0.wp.com/www.ostricher.com/io-content/uploads/2016/03/goplain.png?resize=150%2C150&description=Plaintext+files+with+Markdown+formatting+are+the+heart+of+the+Go+Plain+system" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=Plaintext+files+with+Markdown+formatting+are+the+heart+of+the+Go+Plain+system&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<ul>
+<li><strong>Ubiquitous capture</strong> is essential. Whatever device I happen to use &#8211; if I have some piece of information I want to capture, it should be a completely frictionless operation. Ideally, I would use one capture tool (per device?) for all capture purposes. My system will take care of syncing all captured items, given connectivity.</li>
+<li><strong>Plaintext files with <a href="https://daringfireball.net/projects/markdown/">Markdown</a> formatting</strong> are the basic building block. This seems to strike the ultimate balance (<em>for me</em>) between simplicity, flexibility, portability, and function. Maybe this deserves its own post, if it&#8217;s not clear why <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</li>
+</ul>
+<h3>Short term goals</h3>
+<p>To save myself from my tendency to over-engineer, and try to solve everything at once, here are the things I plan to deal with first, <strong>in this order</strong>:</p>
+<ol>
+<li>Set up a <em>ubiquitous plaintext capture solution</em> that meets my expectations. It <em>must</em> be available on all my devices, and sync across all of them. This is where I&#8217;m and not willing to settle on friction, since I know that if capturing a piece of information is not frictionless, I will likely just not do it.</li>
+<li>Come up with a <em>simple workflow for processing captured information</em>. If I don&#8217;t have a process in place, I know I will have <em>mental friction</em> in capturing information, because I will think about all those captured items staring me there, waiting, laughing.</li>
+<li>Add <em>personal short-term task management</em> to my plaintext-based system. The focus here is on the MacBook &amp; Android phone. Windows laptop &amp; iPad are <em>only</em> nice-to-have.</li>
+<li>Extend the plaintext-based system to accommodate my <em>personal project management</em>, and expand &#8220;personal projects&#8221; to include also the &#8220;work projects&#8221;. Generally, a &#8220;project&#8221; is any group of tasks that strive to a common outcome (such that 1-2 tasks are not enough to accomplish said outcome). I think I want Git-based version control here &#8211; I wonder how this works across devices, and whether this can play nice with syncing. The first priority here is the MacBook. I think the iPad and Android phone are tied for second priority.</li>
+</ol>
+<p>All along, fight to eliminate friction, and simplify things. Try to accomplish every goal with as few new tools as possible. Prefer the clean, more minimal tools, that do less but do it better. On laptops / desktops, optimize for keyboard-driven operation.</p>
+<p>Knowing myself, here are a few things I <a href="http://lifehacker.com/prioritize-your-goals-with-warren-buffetts-two-list-sys-1639146039">explicitly <strong>will not</strong> try to deal with</a> at this time:</p>
+<ul>
+<li>The personal task management will not address long term tasks, recurring tasks, reminders, scheduled events, goals, etc.</li>
+<li>I will not attempt to change the way I use Evernote for saving reference material (e.g. clipping web pages).</li>
+<li><strong>At first</strong>, I do not intend to change how I work with Google calendars, Feedly, Pocket, and Inbox by Gmail.</li>
+<li>I will not attempt to change the way I use Evernote for composing and publishing blog posts.</li>
+</ul>
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1855</post-id>	<feedburner:origLink>https://www.ostricher.com/2016/03/go-plain-personal-productivity-system/</feedburner:origLink></item>
+		<item>
+		<title>My Productivity Porn Season Has Begun</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/sPZ96cZ1oEo/</link>
+		<comments>https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/#respond</comments>
+		<pubDate>Thu, 17 Mar 2016 17:02:16 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Lifehacking]]></category>
+		<category><![CDATA[goplain]]></category>
+		<category><![CDATA[gtd]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1845</guid>
+		<description><![CDATA[My name is Itamar, and I&#8217;m an addict. My addiction is hardcore productivity porn (don&#8217;t worry, it&#8217;s SFW). I do my best to keep my addiction controlled. Under normal circumstances, I don&#8217;t tamper with my &#8220;productivity system&#8221;, beyond minimal maintenance, and the occasional incremental targeted workflow improvement. The issue with the statement above is an&#160;<a href="https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/" class="read-more">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>My name is Itamar, and I&#8217;m an addict. My addiction is hardcore <a href="http://wiki.43folders.com/index.php/Productivity_pr0n">productivity porn</a> (don&#8217;t worry, it&#8217;s SFW).</p>
+<p>I do my best to keep my addiction controlled. Under normal circumstances, I don&#8217;t tamper with my &#8220;productivity system&#8221;, beyond minimal maintenance, and the occasional incremental targeted workflow improvement.</p>
+<p>The issue with the statement above is an underlying assumption that &#8220;the system is mostly good, and fits my current situation in life most of the time&#8221;. That assumption has been overwhelmingly false for a little over two years now.</p>
+<p><span id="more-1845"></span></p>
+<div id="tr_shareit-18458" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">My name is Itamar, and I&#8217;m a productivity porn addict.</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=My+name+is+Itamar%2C+and+I'm+a+productivity+porn+addict. https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/" data-name="My Productivity Porn Season Has Begun" data-description="My name is Itamar, and I&#039;m a productivity porn addict."data-picture="https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/&name=My Productivity Porn Season Has Begun&description=My+name+is+Itamar%2C+and+I'm+a+productivity+porn+addict.&picture=https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/&media=https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150&description=My+name+is+Itamar%2C+and+I'm+a+productivity+porn+addict." target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=My+name+is+Itamar%2C+and+I'm+a+productivity+porn+addict.&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>In the beginning of 2014, I went through the following major life changes, all within one month:</p>
+<ul>
+<li>I became a father of twins.</li>
+<li>Left my previous job. After over 7 years of working in one field, in a <strong>very</strong> strict IT environment. Windows only. No synchronization what-so-ever between my &#8220;life&#8221; stuff and my &#8220;work&#8221; stuff (strictly forbidden in said IT environment).</li>
+<li>Started my <a href="https://www.ostricher.com/dayjob/">current DayJob</a>. A completely different field. A completely different IT environment (one I happen to control <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> ). Mostly Linux. Started using a MacBook Pro as my main machine.</li>
+</ul>
+<p>My last &#8220;productivity porn blitz&#8221; was circa 2010, after reading David&#8217;s Allen <a href="http://www.amazon.com/gp/product/0349408947/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0349408947&amp;linkCode=as2&amp;tag=itamarostri-20">Getting Things Done</a> for the first time. Back then, I tried to adapt the philosophy, and implement a system that worked for me, given my situation at the time. It was Outlook and OneNote-centered. Mobile technology wasn&#8217;t even an integral part of the system, as I didn&#8217;t even own a smartphone until summer 2011.</p>
+<div id="tr_shareit-18459" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">Too much has changed since the last time I &#8220;reinvented&#8221; my GTD-based productivity system</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=Too+much+has+changed+since+the+last+time+I+%26%238220%3Breinvented%26%238221%3B+my+GTD-based+productivity+system https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/" data-name="My Productivity Porn Season Has Begun" data-description="Too much has changed since the last time I &#8220;reinvented&#8221; my GTD-based productivity system"data-picture="https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/&name=My Productivity Porn Season Has Begun&description=Too+much+has+changed+since+the+last+time+I+%26%238220%3Breinvented%26%238221%3B+my+GTD-based+productivity+system&picture=https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/&media=https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150&description=Too+much+has+changed+since+the+last+time+I+%26%238220%3Breinvented%26%238221%3B+my+GTD-based+productivity+system" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=Too+much+has+changed+since+the+last+time+I+%26%238220%3Breinvented%26%238221%3B+my+GTD-based+productivity+system&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>With the amount of change come 2014, I had to make some modifications, but it was in survival mode (newborn twins, remember?), not methodological. Maybe I&#8217;ll write another post about the current state of affairs, but the point is that it&#8217;s been bothering me since then. It reached &#8220;critical levels&#8221;, and it&#8217;s clear to me that time has come to take significant action. I started to fiddle with ideas and tools that completely reinvent my systems, and as any good addict, I&#8217;m quite excited about it <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<p>If you&#8217;re into such things, I believe you will find it interesting to follow my posts on this topic as I go along, tinkering with my workflows, and reinventing my systems. This is especially true for those who use OS X as their main computing environment, but are not willing to go &#8220;all in&#8221; on the Apple ecosystem. I require that I can do <em>most</em> things also from my Android phone, secondary Windows &amp; Linux laptops, and iPad Air. Although I have two &#8220;Apple ecosystem&#8221; devices, I am definitely more into the Google-verse than the Apple-garden.</p>
+<div id="tr_shareit-184510" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">There doesn&#8217;t seem to be a simple, effective, productivity system with tooling that support all the common platforms today&#8230;</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=There+doesn't+seem+to+be+a+simple%2C+effective%2C+productivity+system+with+tooling+that+support+all+the+common+platforms+today%26%238230%3B https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/" data-name="My Productivity Porn Season Has Begun" data-description="There doesn&#039;t seem to be a simple, effective, productivity system with tooling that support all the common platforms today&#8230;"data-picture="https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/&name=My Productivity Porn Season Has Begun&description=There+doesn't+seem+to+be+a+simple%2C+effective%2C+productivity+system+with+tooling+that+support+all+the+common+platforms+today%26%238230%3B&picture=https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/&media=https://i1.wp.com/www.ostricher.com/io-content/uploads/2016/03/productivity-porn.jpg?resize=150%2C150&description=There+doesn't+seem+to+be+a+simple%2C+effective%2C+productivity+system+with+tooling+that+support+all+the+common+platforms+today%26%238230%3B" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=There+doesn't+seem+to+be+a+simple%2C+effective%2C+productivity+system+with+tooling+that+support+all+the+common+platforms+today%26%238230%3B&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>So far, my intermediate conclusion is that my requirement for wide interoperability is the most challenging one. I could not find any resources out there about effective and simple systems that cover OS X, Android, iOS, Windows &amp; Linux. If anyone knows about existing solutions with such a wide support, I would love to know about that! Please do share via the comments! In the following posts I will go into more details about the specific use-cases and workflows, and it will be clearer what I am trying to achieve, and how I&#8217;m trying to accomplish this across all the platforms.</p>
+<p><small><br />
+Post thumbnail image from <a href="https://www.flickr.com/photos/44313045@N08/">Flickr user neetalparekh</a>, licensed under <a href="https://creativecommons.org/licenses/by/2.0/">CC-BY</a>.<br />
+</small></p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1845</post-id>	<feedburner:origLink>https://www.ostricher.com/2016/03/my-productivity-porn-season-has-begun/</feedburner:origLink></item>
+		<item>
+		<title>My Python 3 &amp; Python 2 Dual Development Wishlist</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/3aNHAqhb4BY/</link>
+		<pubDate>Tue, 01 Mar 2016 18:50:59 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Software Development]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1839</guid>
+		<description><![CDATA[I want to use Python 3 in my new Python-based projects. I really do. It is clear that Python 3 is the future (present?), and is probably the &#8220;better language&#8221; compared to Python 2. Why not use the newer language? Raymond Hettinger would probably say that Python 3 allows you to write more beautiful, idiomatic&#160;<a href="https://www.ostricher.com/2016/03/my-python-3-python-2-dual-development-wishlist/" class="read-more">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>I want to use <a href="https://www.python.org/downloads/">Python 3</a> in my new Python-based projects. I really do.</p>
+<p>It is clear that Python 3 is the future (present?), and is probably the &#8220;better language&#8221; compared to Python 2. Why not use the newer language?</p>
+<p><a href="https://twitter.com/raymondh">Raymond Hettinger</a> would probably say that Python 3 allows you to <a href="https://www.youtube.com/watch?v=OSGv2VnC0go">write more beautiful, idiomatic Python</a>. I&#8217;m all in favor of that!</p>
+<p>These days, I use Python 3 without much thought for small scripts that are intended for personal use, with few dependencies. This works fine, as long as I don&#8217;t reach a point that I want to use that library that doesn&#8217;t support Python 3, and then it&#8217;s a PITA&#8230;</p>
+<p>If I want to write something that I want to share, on the other hand, choosing Python 3 is not so obvious. I <em>want</em> to use Python 3, because it&#8217;s the &#8220;Right Thing To Do&#8221;. I don&#8217;t want to be that &#8220;library that doesn&#8217;t support Python 3 and is someone&#8217;s PITA&#8221;. But I also want to have my stuff accessible to the masses that are still working only with Python 2, for whatever <strong>legitimate</strong> reason they may have. Like <a href="https://lwn.net/Articles/640181/">this</a>, and to some extent <a href="http://py3readiness.org">this</a>.</p>
+<p>I wish there was an easy way to do just that &#8211; write <em>beautiful, idiomatic, Python 3 code</em>, while maintaining Python 2 compatibility.</p>
+<div id="tr_shareit-183911" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">I want to write beautiful, idiomatic, Python 3, and maintain Python 2 compatibility &#8211; it this too much to ask?</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=I+want+to+write+beautiful%2C+idiomatic%2C+Python+3%2C+and+maintain+Python+2+compatibility+%26%238211%3B+it+this+too+much+to+ask%3F https://www.ostricher.com/2016/03/my-python-3-python-2-dual-development-wishlist/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2016/03/my-python-3-python-2-dual-development-wishlist/" data-name="My Python 3 &#038; Python 2 Dual Development Wishlist" data-description="I want to write beautiful, idiomatic, Python 3, and maintain Python 2 compatibility &#8211; it this too much to ask?"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2016/03/my-python-3-python-2-dual-development-wishlist/&name=My Python 3 &#038; Python 2 Dual Development Wishlist&description=I+want+to+write+beautiful%2C+idiomatic%2C+Python+3%2C+and+maintain+Python+2+compatibility+%26%238211%3B+it+this+too+much+to+ask%3F" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2016/03/my-python-3-python-2-dual-development-wishlist/&media=&description=I+want+to+write+beautiful%2C+idiomatic%2C+Python+3%2C+and+maintain+Python+2+compatibility+%26%238211%3B+it+this+too+much+to+ask%3F" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=I+want+to+write+beautiful%2C+idiomatic%2C+Python+3%2C+and+maintain+Python+2+compatibility+%26%238211%3B+it+this+too+much+to+ask%3F&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>Yes, you can say that <a href="https://pythonhosted.org/six/">Six library</a> is a solution for writing dual Python 2 &amp; Python 3 code. But would you argue that it grants my wish for &#8220;beautiful, idiomatic, Python 3 code&#8221;? If you think it does &#8211; please show me some examples!</p>
+<p>Maybe you can also claim that <a href="https://pypi.python.org/pypi/3to2/1.1.1">3to2</a> is a viable solution. I don&#8217;t know &#8211; I haven&#8217;t tried yet with complex real-life use-cases. Have you? Can you say this is a feasible path to take? How well does it handle the newest shiniest Python 3 stuff? What&#8217;s the development workflow around it? What do you do to catch and fix the edge-cases it doesn&#8217;t handle well, without ruining the original code with version-aware crap?</p>
+<p>Are there other viable options? Anyone doing this with a large-scale projects, and is willing to share the approach and experience?</p>
+]]></content:encoded>
+		<post-id xmlns="com-wordpress:feed-additions:1">1839</post-id>	<feedburner:origLink>https://www.ostricher.com/2016/03/my-python-3-python-2-dual-development-wishlist/</feedburner:origLink></item>
+		<item>
+		<title>Intro to Meteor Coursera Course: Final Thoughts</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/orYEEeAHGvs/</link>
+		<comments>https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/#respond</comments>
+		<pubDate>Mon, 21 Dec 2015 04:50:07 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Software Engineering]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[meteor]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1831</guid>
+		<description><![CDATA[I completed the Introduction to Meteor.js Development course two weeks ago, after submitting the final assignment &#8211; my social website aggregator. I waited with this &#8220;final thoughts&#8221; post, because the course officially ended just now. I also joined the follow-up course, Web Application Development with JavaScript and MongoDB, as it seems to keep digging into&#160;<a href="https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" class="read-more">Continue Reading</a>]]></description>
+				<content:encoded><![CDATA[<p>I completed the <a href="https://www.coursera.org/learn/meteor-development">Introduction to Meteor.js Development course</a> two weeks ago, after submitting the final assignment &#8211; <a href="http://ostrich-siteace.meteor.com" class="broken_link" rel="nofollow">my social website aggregator</a>. I waited with this &#8220;final thoughts&#8221; post, because the course officially ended just now.</p>
+<p>I also joined the follow-up course, <a href="https://www.coursera.org/learn/web-application-development">Web Application Development with JavaScript and MongoDB</a>, as it seems to keep digging into more advanced Meteor subjects. It just started this week.</p>
+<p><span id="more-1831"></span></p>
+<div id="tr_shareit-183112" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">I completed the Intro to Meteor Coursera course, and joined the follow-up course</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=I+completed+the+Intro+to+Meteor+Coursera+course%2C+and+joined+the+follow-up+course https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" data-name="Intro to Meteor Coursera Course: Final Thoughts" data-description="I completed the Intro to Meteor Coursera course, and joined the follow-up course"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/&name=Intro to Meteor Coursera Course: Final Thoughts&description=I+completed+the+Intro+to+Meteor+Coursera+course%2C+and+joined+the+follow-up+course&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150&description=I+completed+the+Intro+to+Meteor+Coursera+course%2C+and+joined+the+follow-up+course" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=I+completed+the+Intro+to+Meteor+Coursera+course%2C+and+joined+the+follow-up+course&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>Overall, the course was effective. It already proved useful, as I was able to <a href="https://www.ostricher.com/2015/12/kambatz-app-first-iteration/">build the first Kambatz iteration</a> starting from my assignment submission.</p>
+<p>I have one major criticism towards Coursera here though. This course is part of a <a href="https://www.coursera.org/specializations/website-development">6-part specialization</a> that they are marketing aggressively, but they are also selling the individual courses from the specialization. This implies that the courses are independent, but this is definitely not the case. The course referred to &#8220;other courses in the specialization&#8221; quite often throughout. I won&#8217;t complain much, as I took the free version, but this wouldn&#8217;t be fair towards paying students&#8230;</p>
+<div id="tr_shareit-183113" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">The Coursera website development specialization courses are not REALLY meant to be taken individually&#8230; =/</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=The+Coursera+website+development+specialization+courses+are+not+REALLY+meant+to+be+taken+individually%26%238230%3B+%3D%2F https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" data-name="Intro to Meteor Coursera Course: Final Thoughts" data-description="The Coursera website development specialization courses are not REALLY meant to be taken individually&#8230; =/"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/&name=Intro to Meteor Coursera Course: Final Thoughts&description=The+Coursera+website+development+specialization+courses+are+not+REALLY+meant+to+be+taken+individually%26%238230%3B+%3D%2F&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150&description=The+Coursera+website+development+specialization+courses+are+not+REALLY+meant+to+be+taken+individually%26%238230%3B+%3D%2F" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=The+Coursera+website+development+specialization+courses+are+not+REALLY+meant+to+be+taken+individually%26%238230%3B+%3D%2F&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>Back the the course itself. If you&#8217;re also new to Meteor, and considering whether to take this course, or just <a href="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/">go through the official tutorial</a>, here&#8217;s my advice:</p>
+<ol>
+<li>If you want to start with Meteor as quickly as possible, just do the tutorial. If you have React background, do the <a href="https://www.meteor.com/tutorials/react/creating-an-app">React tutorial</a>. Otherwise, do the <a href="https://www.meteor.com/tutorials/blaze/creating-an-app">Blaze tutorial</a>.</li>
+<li>If you&#8217;re not in a rush, and you&#8217;re familiar with modern web development essentials (HTML, CSS, JavaScript, jQuery, Bootstrap), go ahead and take the course. You might be able to go through all of it in a day or two, since all 4 weeks open up as soon as the course begins.</li>
+<li>If you&#8217;re not in a rush, and you&#8217;re lacking said web development skills, consider taking the <a href="https://www.coursera.org/specializations/website-development">entire specialization</a>. If you&#8217;re not afraid of picking up new things on the fly, you might be fine with starting with this course, and filling in the gaps as they come up (this is what I did).</li>
+</ol>
+<div id="tr_shareit-183114" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">If you want to get started with Meteor.js quickly &#8211; skip the course &#8211; just do the tutorial</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=If+you+want+to+get+started+with+Meteor.js+quickly+%26%238211%3B+skip+the+course+%26%238211%3B+just+do+the+tutorial https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" data-name="Intro to Meteor Coursera Course: Final Thoughts" data-description="If you want to get started with Meteor.js quickly &#8211; skip the course &#8211; just do the tutorial"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/&name=Intro to Meteor Coursera Course: Final Thoughts&description=If+you+want+to+get+started+with+Meteor.js+quickly+%26%238211%3B+skip+the+course+%26%238211%3B+just+do+the+tutorial&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150&description=If+you+want+to+get+started+with+Meteor.js+quickly+%26%238211%3B+skip+the+course+%26%238211%3B+just+do+the+tutorial" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=If+you+want+to+get+started+with+Meteor.js+quickly+%26%238211%3B+skip+the+course+%26%238211%3B+just+do+the+tutorial&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>The course was great, but the time investment was much greater than going through a tutorial. The tutorial focuses on Meteor stuff, while the course also deals with building an actual web thingie around the Meteor stuff. As far as &#8220;actual Meteor stuff&#8221; are concerned, both the course and the tutorial cover similar grounds. The tutorial actually covers more core Meteor, like methods and subscriptions &#8211; topics that only the follow-up course deals with. The course covers more diverse topics, like using a bunch of packages beyond <code>accounts</code> (bootstrap, stars-rating, comments, search) that are practically useful for building real web applications.</p>
+<p>One particular aspect of this course that I really appreciated is the fact that bugs and errors were <em>not</em> edited out! The instructor would often make code changes &#8220;on camera&#8221;, and make a mistake or error (most commonly forget a comma, sometimes forget to save one of the files, etc.). Then, when things crash and burn, instead of redoing the scene, the instructor would simply live-debug what&#8217;s happening &#8211; which is great, because these kind of things are expected in real life, and shouldn&#8217;t be hidden and left on the editing floor <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<div id="tr_shareit-183115" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">The course doesn&#8217;t pretend that developers write perfect code immediately, and includes live-debugging sessions &#8211; kudos!</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=The+course+doesn't+pretend+that+developers+write+perfect+code+immediately%2C+and+includes+live-debugging+sessions+%26%238211%3B+kudos%21 https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/" data-name="Intro to Meteor Coursera Course: Final Thoughts" data-description="The course doesn&#039;t pretend that developers write perfect code immediately, and includes live-debugging sessions &#8211; kudos!"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/&name=Intro to Meteor Coursera Course: Final Thoughts&description=The+course+doesn't+pretend+that+developers+write+perfect+code+immediately%2C+and+includes+live-debugging+sessions+%26%238211%3B+kudos%21&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/ostrich-site-ace.png?resize=150%2C150&description=The+course+doesn't+pretend+that+developers+write+perfect+code+immediately%2C+and+includes+live-debugging+sessions+%26%238211%3B+kudos%21" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=The+course+doesn't+pretend+that+developers+write+perfect+code+immediately%2C+and+includes+live-debugging+sessions+%26%238211%3B+kudos%21&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>Unfortunately, there were some more subtle issues with the examples that were not uncovered and dealt with by the instructor. Here are a couple of example of issues that were raised by students in the course discussion forums:</p>
+<ol>
+<li>It appears that the accounts-password package is vulnerable to <a href="https://www.owasp.org/index.php/Authentication_Cheat_Sheet#Authentication_and_Error_Messages">user ID and password enumeration</a>, as visible from the responses the instructor got in the video when trying to log in using different usernames and passwords.</li>
+<li>Seems that the gallery rating functionality implemented in week 2 broke by the end of the week, as visible in the videos where sometimes the rating wouldn&#8217;t show up. Some students thought this might be because of elements with ID&#8217;s that start with numeric characters (when the underlying Mongo ID happens to start with a number). Others pointed to the fact that there are two elements with the same ID as the root cause. I still don&#8217;t know what exactly is the root cause, and what should be the proper fix.</li>
+</ol>
+<p>As with my point about bugs and errors &#8211; I think it is good that there are problems. The &#8220;unfortunate&#8221; thing here is that these issues remained unresolved, without attention from the course staff. The first issue, concerning the security of a core Meteor package, may be beyond their control. But not addressing the second issue, concerning the core content that they created, is simply unprofessional.</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1831</post-id>	<feedburner:origLink>https://www.ostricher.com/2015/12/intro-to-meteor-coursera-course-final-thoughts/</feedburner:origLink></item>
+		<item>
+		<title>Kambatz App: First Iteration</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/cuSley4MMks/</link>
+		<comments>https://www.ostricher.com/2015/12/kambatz-app-first-iteration/#respond</comments>
+		<pubDate>Sun, 13 Dec 2015 20:28:08 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Software Engineering]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[meteor]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1821</guid>
+		<description><![CDATA[I finally started building Kambatz &#8211; my bills management app. It&#8217;s a refreshing change, after weeks of just learning, by taking an online course, or going through an official tutorial. I finished the course, in case you&#8217;re curious. I plan to write my thoughts about the course once it formally ends. The course served me&#160;<a href="https://www.ostricher.com/2015/12/kambatz-app-first-iteration/" class="read-more">Continue Reading</a>]]></description>
+	<script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script>			<content:encoded><![CDATA[<p>I finally started building <a href="https://www.ostricher.com/2015/11/kambatz-the-app-im-building-to-learn-meteor/">Kambatz &#8211; my bills management app</a>.</p>
+<p>It&#8217;s a refreshing change, after weeks of just learning, by <a href="https://www.ostricher.com/2015/11/meteor-coursera-course/">taking an online course</a>, or <a href="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/">going through an official tutorial</a>. I finished the course, in case you&#8217;re curious. I plan to write my thoughts about the course once it formally ends.</p>
+<p>The course served me well. I was able to use my submission for the final assignment as a reasonable starting point for my Kambatz app. I changed most of it, but it was useful nonetheless!</p>
+<p>This iteration of the app doesn&#8217;t really do anything. It&#8217;s just some plumbing and layout to get me started. Read on for more about what it contains, and the new things I learned while working on it.</p>
+<p>You can see the latest prototype at <a href="http://kambatz.meteor.com/" class="broken_link" rel="nofollow">kambatz.meteor.com</a>, and follow the code on <a href="https://github.com/TheOstrichIO/kambatz">the GitHub repository</a> <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<p>A snapshot of this iteration is available at <a href="http://20151213.kambatz.meteor.com" class="broken_link" rel="nofollow">20151213.kambatz.meteor.com</a>, and the code for this iteration is <a href="https://github.com/TheOstrichIO/kambatz/tree/2015-12-13">tagged in the GitHub repository</a>.</p>
+<p><span id="more-1821"></span></p>
+<div id="tr_shareit-182116" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">I finally started working on my Kambatz @meteorjs app &#8211; check it out at http://kambatz.meteor.com/</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=I+finally+started+working+on+my+Kambatz+%40meteorjs+app+%26%238211%3B+check+it+out+at+http%3A%2F%2Fkambatz.meteor.com%2F https://www.ostricher.com/2015/12/kambatz-app-first-iteration/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/12/kambatz-app-first-iteration/" data-name="Kambatz App: First Iteration" data-description="I finally started working on my Kambatz @meteorjs app &#8211; check it out at http://kambatz.meteor.com/"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration-thumb.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/12/kambatz-app-first-iteration/&name=Kambatz App: First Iteration&description=I+finally+started+working+on+my+Kambatz+%40meteorjs+app+%26%238211%3B+check+it+out+at+http%3A%2F%2Fkambatz.meteor.com%2F&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration-thumb.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/12/kambatz-app-first-iteration/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration-thumb.png?resize=150%2C150&description=I+finally+started+working+on+my+Kambatz+%40meteorjs+app+%26%238211%3B+check+it+out+at+http%3A%2F%2Fkambatz.meteor.com%2F" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=I+finally+started+working+on+my+Kambatz+%40meteorjs+app+%26%238211%3B+check+it+out+at+http%3A%2F%2Fkambatz.meteor.com%2F&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+
+<a href='https://www.ostricher.com/2015/12/kambatz-app-first-iteration/kambatz-first-iteration-png/'><img width="300" height="181" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration.png?fit=300%2C181" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration.png?w=1057 1057w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration.png?resize=300%2C181 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration.png?resize=1024%2C619 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration.png?resize=980%2C592 980w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/12/kambatz-first-iteration.png?resize=573%2C346 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<h3>What&#8217;s in this iteration?</h3>
+<p>This iteration doesn&#8217;t do much, as far as functionality goes. The focus was more on the layout and plumbing. It includes:</p>
+<ul>
+<li>A responsive bootstrap-based UI.</li>
+<li>A top-navbar, that doesn&#8217;t do anything, but includes a neat search box.</li>
+<li>A sticky footer, with copyright notice, and information about the deployed iteration.</li>
+<li>A sign-in widget that actually works, because it&#8217;s so easy to do that in Meteor! No point in using it though, as it does not affect the functionality in any way.</li>
+<li>Main area with template that pulls &#8220;bills metadata&#8221; from a MongoDB collection and displays some data about them.</li>
+</ul>
+<p>I borrowed from the course the idea of pushing some mock data into the collection on the server startup event, if the collection is empty. It definitely makes development easier &#8211; no need to write input interfaces to get data into the prototype. I also learned how to use Bootstrap in the course. The use of iron:router &#8211; also from the course.</p>
+<p>As you can see, there&#8217;s no actual functionality here. Just rendering a static list of bills.</p>
+<h3>New things I learned for this iteration</h3>
+<p>One new thing I learned during this iteration is about <a href="https://www.discovermeteor.com/blog/a-guide-to-meteor-templates-data-contexts/">the <code>#with</code> template tag</a>.</p>
+<p>One of my &#8220;bill types&#8221; is a &#8220;receipt&#8221;, that refers to another bill record, by its <code>_id</code>. To render a &#8220;receipt&#8221;, I wanted to pull the bill it refers to, and use fields from that record. I learned that the way to do that, is to use the <code>#with</code> template tag to set the data context to the referenced bill. You can see this <a href="https://github.com/TheOstrichIO/kambatz/blob/2015-12-13/client/kambatz.html#L73-L78">in the kambatz.html template code</a>.</p>
+<p>I also learned that I can&#8217;t do much logic inside template conditional tags. I wanted to display different things depending on the bill type, so the natural thing was to do things like <code>{{#if (type == 'receipt')}}</code> in the template. That didn&#8217;t work. I could write a template helper <code>isReceipt()</code> that returns the result of that logic, and use <code>{{#if isReceipt}}</code> in the template. But I&#8217;m too lazy to write helpers every time I need a simple comparison. So I found <a href="http://stackoverflow.com/questions/24650658/check-for-equality-in-spacebars/28710902#28710902">this StackOverflow answer</a> that taught me to register a global template helper <code>equals</code> that does exactly what I wanted (see <a href="https://github.com/TheOstrichIO/kambatz/blob/2015-12-13/client/main.js#L31-L36">here</a>). With that, the template <code>if</code> looks like this &#8211; <code>{{#if equals type 'receipt'}}</code> (see <a href="https://github.com/TheOstrichIO/kambatz/blob/2015-12-13/client/kambatz.html#L72">here</a>).</p>
+<p>The <a href="http://www.w3schools.com/tags/tag_footer.asp">HTML <code>&lt;footer&gt;</code> tag</a> was also new to me.</p>
+<h3>Summary</h3>
+<p>That&#8217;s all for this first Kambatz iteration. No functionality, but some useful layout and plumbing stuff that I can build on in upcoming iterations.</p>
+<p>I hope I will be able to keep progressing in such small iterations. It makes it manageable, and maintains a good balance between building and learning new things.</p>
+<p>I am a little disappointed about the lack of resources about testing Meteor-powered projects. The subject of testing, not to say test-driven-development, was not mentioned at all in the learning resources I covered so far. Since I have no clue about frontend testing, and I&#8217;m at the prototyping phase, I&#8217;m opting to proceed without digging into testing at this point. I just hope that later on I will discover that Meteor have really good testing tools available&#8230;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2015/12/kambatz-app-first-iteration/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1821</post-id>	<feedburner:origLink>https://www.ostricher.com/2015/12/kambatz-app-first-iteration/</feedburner:origLink></item>
+		<item>
+		<title>Official Meteor Tutorial: TODO App With React</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/OfIZQ_swjqo/</link>
+		<comments>https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/#comments</comments>
+		<pubDate>Sun, 29 Nov 2015 19:55:16 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Software Engineering]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[meteor]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1781</guid>
+		<description><![CDATA[I installed Meteor, and joined a Coursera introduction course, but I still want to go through one of the official Meteor tutorials. The Meteor site has a tutorial around building a &#8220;ToDo App&#8221;, in one of three flavors &#8211; Blaze, Angular, and React. I&#8217;m not quite sure what it means to choose one of these&#160;<a href="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" class="read-more">Continue Reading</a>]]></description>
+	<script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script>			<content:encoded><![CDATA[<p>I <a href="https://www.ostricher.com/2015/11/installing-meteor-first-step-in-meteor-training/">installed Meteor</a>, and <a href="https://www.ostricher.com/2015/11/meteor-coursera-course/">joined a Coursera introduction course</a>, but I still want to go through one of the <a href="https://www.meteor.com/tutorials/blaze/creating-an-app">official</a> <a href="https://www.meteor.com/tutorials/angular/creating-an-app">Meteor</a> <a href="https://www.meteor.com/tutorials/react/creating-an-app">tutorials</a>.</p>
+<p>The <a href="https://www.meteor.com/install">Meteor site</a> has a tutorial around building a &#8220;ToDo App&#8221;, in one of three flavors &#8211; Blaze, Angular, and React.</p>
+<p>I&#8217;m not quite sure what it means to choose one of these flavors (see more in the <a href="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/#feedback">feedback section</a>). It looks like Blaze is some sort of a default, or the recommended one, based on some links pointing directly to it, and the fact that it is the first in the list. I&#8217;m already using Blaze in the <a href="https://www.ostricher.com/2015/11/meteor-coursera-course/">Meteor intro Coursera course</a>, so to spice things up, I randomly decided to go with React for this tutorial.</p>
+<p>Do read on for the an exciting and detailed accounting of my step-by-step experience with the tutorial! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> For your convenience, I have shared my tutorial implementation in <a href="https://github.com/TheOstrichIO/meteor-simple-todos-react">a GitHub repository</a>. It shouldn&#8217;t be very different from the <a href="https://github.com/meteor/simple-todos-react">official Meteor tutorial repository</a>, but I took the liberty to add some tweaks of my own.</p>
+<p>tl;dr: The tutorial was excellent. It is well structured. Things worked as expected. It is clear and concise. I feel I learned a lot in a short time. I do have some <a href="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/#feedback">feedback to share</a>, about the lack of clarity about Blaze vs. Angular vs. React, the mobile section, and the insecure defaults that are built-in.</p>
+<p><span id="more-1781"></span></p>
+<div id="tr_shareit-178117" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">The Meteor TODO App with React tutorial is excellent!</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=The+Meteor+TODO+App+with+React+tutorial+is+excellent%21 https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" data-name="Official Meteor Tutorial: TODO App With React" data-description="The Meteor TODO App with React tutorial is excellent!"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&name=Official Meteor Tutorial: TODO App With React&description=The+Meteor+TODO+App+with+React+tutorial+is+excellent%21&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150&description=The+Meteor+TODO+App+with+React+tutorial+is+excellent%21" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=The+Meteor+TODO+App+with+React+tutorial+is+excellent%21&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<h3>Going through the ToDo App With React tutorial</h3>
+<p>In this section I document my step-by-step progress through the <a href="https://www.meteor.com/tutorials/react/creating-an-app">TODO App With React tutorial</a>. It&#8217;s quite verbose <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /> . See also my <a href="https://github.com/TheOstrichIO/meteor-simple-todos-react">tutorial GitHub repository</a>. Feel free to jump straight to the <a href="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/#feedback">feedback section</a>.</p>
+<p>For each step, I took a partial screenshot of the tutorial instructions (in case the tutorial itself changes in the future), and one or more screenshots of the result.</p>
+<h4>Step 1: Creating your first app</h4>
+<p><a href="https://www.meteor.com/tutorials/react/creating-an-app">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-1-png/'><img width="300" height="141" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-1.png?fit=300%2C141" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-1.png?w=2534 2534w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-1.png?resize=300%2C141 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-1.png?resize=1024%2C480 1024w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-1.png?resize=980%2C459 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-1.png?resize=573%2C269 573w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-1.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-create-welcome-png/'><img width="300" height="141" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-create-welcome.png?fit=300%2C141" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-create-welcome.png?w=2104 2104w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-create-welcome.png?resize=300%2C141 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-create-welcome.png?resize=1024%2C480 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-create-welcome.png?resize=980%2C459 980w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-create-welcome.png?resize=573%2C269 573w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-create-welcome.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/a451b3232d6b349a411f2a08921a6f01892cc0e5">Commit in my repository</a></p>
+<h4>Step 2: Defining views with React components</h4>
+<p><a href="https://www.meteor.com/tutorials/react/components">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-2-png/'><img width="300" height="155" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2.png?fit=300%2C155" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2.png?w=1910 1910w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2.png?resize=300%2C155 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2.png?resize=1024%2C531 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2.png?resize=980%2C508 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2.png?resize=573%2C297 573w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-2-result-png/'><img width="300" height="156" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2-result.png?fit=300%2C156" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2-result.png?w=2304 2304w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2-result.png?resize=300%2C156 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2-result.png?resize=1024%2C533 1024w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2-result.png?resize=980%2C510 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2-result.png?resize=573%2C298 573w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-2-result.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/b0d76bc077b8893f8126667f2761688e02c05082">Commit in my repository</a></p>
+<h4>Step 3: Storing tasks in a collection</h4>
+<p><a href="https://www.meteor.com/tutorials/react/collections">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-3-png/'><img width="300" height="170" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3.png?fit=300%2C170" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3.png?w=1908 1908w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3.png?resize=300%2C170 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3.png?resize=1024%2C581 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3.png?resize=980%2C556 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3.png?resize=573%2C325 573w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-3-result-png/'><img width="300" height="157" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3-result.png?fit=300%2C157" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3-result.png?w=2326 2326w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3-result.png?resize=300%2C157 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3-result.png?resize=1024%2C535 1024w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3-result.png?resize=980%2C512 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3-result.png?resize=573%2C300 573w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-3-result.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/a8f2845dfc8b12c555b39f46f6c681c96de9b974">Commit in my repository</a></p>
+<h4>Step 4: Adding tasks with a form</h4>
+<p><a href="https://www.meteor.com/tutorials/react/forms-and-events">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-4-png/'><img width="300" height="172" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4.png?fit=300%2C172" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4.png?w=1910 1910w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4.png?resize=300%2C172 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4.png?resize=1024%2C587 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4.png?resize=980%2C561 980w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4.png?resize=573%2C328 573w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-4-result-png/'><img width="300" height="160" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4-result.png?fit=300%2C160" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4-result.png?w=2308 2308w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4-result.png?resize=300%2C160 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4-result.png?resize=1024%2C547 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4-result.png?resize=980%2C523 980w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4-result.png?resize=573%2C306 573w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-4-result.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/898c290dfc92e471c918162df3461849c28c78ed">Commit in my repository</a></p>
+<p>This step had a troubling &#8220;side note&#8221; relating to security:</p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-security-side-note-png/'><img width="300" height="54" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-security-side-note.png?fit=300%2C54" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-security-side-note.png?w=1870 1870w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-security-side-note.png?resize=300%2C54 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-security-side-note.png?resize=1024%2C184 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-security-side-note.png?resize=980%2C176 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-security-side-note.png?resize=573%2C103 573w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-security-side-note.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p>I will get back to that in the <a href="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/#feedback">feedback section</a>.</p>
+<div id="tr_shareit-178118" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">Don&#8217;t forget to disable the insecure Meteor defaults in your apps!!!</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=Don't+forget+to+disable+the+insecure+Meteor+defaults+in+your+apps%21%21%21 https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" data-name="Official Meteor Tutorial: TODO App With React" data-description="Don&#039;t forget to disable the insecure Meteor defaults in your apps!!!"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&name=Official Meteor Tutorial: TODO App With React&description=Don't+forget+to+disable+the+insecure+Meteor+defaults+in+your+apps%21%21%21&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150&description=Don't+forget+to+disable+the+insecure+Meteor+defaults+in+your+apps%21%21%21" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=Don't+forget+to+disable+the+insecure+Meteor+defaults+in+your+apps%21%21%21&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<h4>Step 5: Checking off and deleting tasks</h4>
+<p><a href="https://www.meteor.com/tutorials/react/update-and-remove">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-5-png/'><img width="300" height="168" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5.png?fit=300%2C168" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5.png?w=1910 1910w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5.png?resize=300%2C168 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5.png?resize=1024%2C574 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5.png?resize=980%2C549 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5.png?resize=573%2C321 573w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-5-result-png/'><img width="300" height="138" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5-result.png?fit=300%2C138" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5-result.png?w=2154 2154w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5-result.png?resize=300%2C138 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5-result.png?resize=1024%2C470 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5-result.png?resize=980%2C450 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5-result.png?resize=573%2C263 573w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-5-result.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/ac69d1b607993c525bccf29c13e31dc97435061c">Commit in my repository</a></p>
+<h4>Step 6: Deploying my app</h4>
+<p><a href="https://www.meteor.com/tutorials/react/deploying-your-app">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-6-png/'><img width="300" height="153" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6.png?fit=300%2C153" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6.png?w=1910 1910w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6.png?resize=300%2C153 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6.png?resize=1024%2C521 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6.png?resize=980%2C499 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6.png?resize=573%2C292 573w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p>I can&#8217;t say I feel comfortable with deploying a definitely <em>insecure</em> app. But it is in no way an app that handles sensitive or personal data, there is no login support, and it is deployed to the Meteor servers &#8211; so if they want me to deploy it, then I guess it&#8217;s OK&#8230;</p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-6-result-png/'><img width="300" height="245" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6-result.png?fit=300%2C245" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6-result.png?w=1352 1352w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6-result.png?resize=300%2C245 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6-result.png?resize=1024%2C835 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6-result.png?resize=902%2C735 902w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-6-result.png?resize=528%2C430 528w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p>I wonder why it took ~20 minutes&#8230; (my Internet connection is not <em>that</em> bad!)</p>
+<h4>Step 7: Running my app on Android or iOS</h4>
+<p><a href="https://www.meteor.com/tutorials/react/running-on-mobile">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-7-png/'><img width="300" height="156" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7.png?fit=300%2C156" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7.png?w=1914 1914w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7.png?resize=300%2C156 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7.png?resize=1024%2C532 1024w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7.png?resize=980%2C509 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7.png?resize=573%2C298 573w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-7-cba-png/'><img width="300" height="90" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7-cba.png?fit=300%2C90" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7-cba.png?w=1332 1332w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7-cba.png?resize=300%2C90 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7-cba.png?resize=1024%2C306 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7-cba.png?resize=980%2C293 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-7-cba.png?resize=573%2C171 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p>Interesting, but not enough to go into lengthy installations. Maybe some other time.</p>
+<h4>Step 8: Storing temporary UI data in component state</h4>
+<p><a href="https://www.meteor.com/tutorials/react/temporary-ui-state">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-8-png/'><img width="300" height="164" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8.png?fit=300%2C164" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8.png?w=1916 1916w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8.png?resize=300%2C164 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8.png?resize=1024%2C560 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8.png?resize=980%2C536 980w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8.png?resize=573%2C313 573w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-8-result-png/'><img width="300" height="198" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8-result.png?fit=300%2C198" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8-result.png?w=1706 1706w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8-result.png?resize=300%2C198 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8-result.png?resize=1024%2C676 1024w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8-result.png?resize=980%2C647 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-8-result.png?resize=573%2C378 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/676a7725cf5708271b08404676189c10d4a220f0">Commit in my repository</a></p>
+<h4>Step 9: Adding user accounts</h4>
+<p><a href="https://www.meteor.com/tutorials/react/adding-user-accounts">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-9-png/'><img width="300" height="171" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9.png?fit=300%2C171" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9.png?w=1912 1912w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9.png?resize=300%2C171 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9.png?resize=1024%2C585 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9.png?resize=980%2C560 980w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9.png?resize=573%2C327 573w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-9-not-signed-in-png/'><img width="300" height="243" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-not-signed-in.png?fit=300%2C243" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-not-signed-in.png?w=1386 1386w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-not-signed-in.png?resize=300%2C243 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-not-signed-in.png?resize=1024%2C830 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-not-signed-in.png?resize=906%2C735 906w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-not-signed-in.png?resize=530%2C430 530w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-9-create-user-png/'><img width="300" height="153" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-create-user.png?fit=300%2C153" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-create-user.png?w=1838 1838w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-create-user.png?resize=300%2C153 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-create-user.png?resize=1024%2C524 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-create-user.png?resize=980%2C501 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-create-user.png?resize=573%2C293 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-9-signed-in-png/'><img width="300" height="243" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-signed-in.png?fit=300%2C243" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-signed-in.png?w=1392 1392w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-signed-in.png?resize=300%2C243 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-signed-in.png?resize=1024%2C830 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-signed-in.png?resize=907%2C735 907w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-signed-in.png?resize=531%2C430 531w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/f95e1e853ec4c725d49d7ef9dd833eb7443591dd">Commit in my repository</a></p>
+<p>Now, I didn&#8217;t like the way old TODO items look &#8220;broken&#8221;. Here&#8217;s a small tweak for displaying a generic name in that case:</p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-9-my-tweak-png/'><img width="300" height="175" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-my-tweak.png?fit=300%2C175" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-my-tweak.png?w=971 971w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-my-tweak.png?resize=300%2C175 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-9-my-tweak.png?resize=573%2C333 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/7f7c936a9dbd2c5513c264e5ca1eac2ea14ddb3c">My tweak commit</a></p>
+<h4>Step 10: Security with methods</h4>
+<p><a href="https://www.meteor.com/tutorials/react/security-with-methods">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-10-png/'><img width="300" height="169" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10.png?fit=300%2C169" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10.png?w=971 971w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10.png?resize=300%2C169 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10.png?resize=573%2C323 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-10-effect-png/'><img width="300" height="152" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-effect.png?fit=300%2C152" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-effect.png?w=986 986w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-effect.png?resize=300%2C152 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-effect.png?resize=980%2C495 980w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-effect.png?resize=573%2C289 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-10-result-png/'><img width="300" height="244" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?fit=300%2C244" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?w=692 692w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=300%2C244 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=529%2C430 529w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/a4d831bdc25273b3521449de76d6aedfd254ac72">Commit in my repository</a></p>
+<h4>Step 11: Filtering data with publish and subscribe</h4>
+<p><a href="https://www.meteor.com/tutorials/react/publish-and-subscribe">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-11-png/'><img width="300" height="174" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11.png?fit=300%2C174" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11.png?w=973 973w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11.png?resize=300%2C174 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11.png?resize=573%2C332 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-11-effect-png/'><img width="300" height="186" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-effect.png?fit=300%2C186" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-effect.png?w=952 952w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-effect.png?resize=300%2C186 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-effect.png?resize=573%2C355 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-11-result-png/'><img width="300" height="158" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-result.png?fit=300%2C158" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-result.png?w=1112 1112w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-result.png?resize=300%2C158 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-result.png?resize=1024%2C541 1024w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-result.png?resize=980%2C517 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-11-result.png?resize=573%2C302 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p><a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/6bbc8357d9173dab2362885ad63973d1dea49233">Commit in my repository</a></p>
+<p>It doesn&#8217;t make sense to me that any user can delete and check off public tasks of any other user. So I <a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/6c8740407d670f36a53c9c87b11ad2f60fc2244e">implemented a little tweak</a> that allows only the task owner to do these operations.</p>
+<h4>Step 12: What&#8217;s next?</h4>
+<p><a href="https://www.meteor.com/tutorials/react/next-steps">Direct link</a></p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-todo-react-tutorial-step-12-png/'><img width="300" height="168" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-12.png?fit=300%2C168" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-12.png?w=1904 1904w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-12.png?resize=300%2C168 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-12.png?resize=1024%2C574 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-12.png?resize=980%2C550 980w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-12.png?resize=573%2C321 573w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-12.png?w=1800 1800w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<h4>Post-tutorial tweaks</h4>
+<p>While working on the tutorial, this way of accessing a text input seemed weird to me:</p>
+<pre class="brush: jscript; title: ; notranslate">
+React.findDOMNode(this.refs.textInput).value
+</pre>
+<p>When reading the tutorial, I thought that <code>this.refs.textInput.value</code> should do the trick. Looks like <a href="https://github.com/meteor/simple-todos-react/commit/1b87eff8bd37fc375f506c32b9c4d765f15b301f#commitcomment-14396600">SachaG feels the same about this</a>, so <a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/0bfd9ec007d3943f415bd39d84b565a874aa598a">I changed it</a>.</p>
+<p>I also noticed there&#8217;s an [open pull request]https://github.com/meteor/simple-todos-react/pull/7) to change <code>React.render</code> to <code>ReactDOM.render</code>, so I <a href="https://github.com/TheOstrichIO/meteor-simple-todos-react/commit/8737e6089c9bdc6104b280b7d511ce8a19b09e17">applied that too</a>.</p>
+<h3><a name="feedback"></a>Tutorial Feedback</h3>
+<p>As I said above, the tutorial is excellent.</p>
+<p>The structure of short and concise steps is clear and instructive. It contains inline snippets of commands that I can copy &amp; paste, and they work. It contains inline snippets of codes with highlighted diffs that I can copy &amp; paste, or manually modify. Every code modification is also an individual git commit, linked to GitHub, which makes it easy to compare what I do to what I should have.</p>
+<p>It is clear that I can choose one of three tutorial (Blaze, Angular, React), but there is no clear explanation what it means, and what might be the repercussions of my choice. On the surface, the three choices are equivalent, but some &#8220;tutorial&#8221; links go straight to the Blaze tutorial (e.g. top nav-bar link, tutorial button from landing page), and the Blaze tutorial is listed first as &#8220;TODO App&#8221; (and not &#8220;TODO App With Blaze&#8221;):</p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-side-nav-tutorials-png/'><img width="162" height="300" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-side-nav-tutorials.png?fit=162%2C300" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-side-nav-tutorials.png?w=254 254w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-side-nav-tutorials.png?resize=162%2C300 162w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-side-nav-tutorials.png?resize=232%2C430 232w" sizes="(max-width: 162px) 100vw, 162px" /></a>
+
+<div id="tr_shareit-178119" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">What&#8217;s the deal with Blaze vs. Angular vs. React..?</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=What's+the+deal+with+Blaze+vs.+Angular+vs.+React..%3F https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" data-name="Official Meteor Tutorial: TODO App With React" data-description="What&#039;s the deal with Blaze vs. Angular vs. React..?"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&name=Official Meteor Tutorial: TODO App With React&description=What's+the+deal+with+Blaze+vs.+Angular+vs.+React..%3F&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150&description=What's+the+deal+with+Blaze+vs.+Angular+vs.+React..%3F" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=What's+the+deal+with+Blaze+vs.+Angular+vs.+React..%3F&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>This sends a message that Blaze is the recommended flavor, or maybe even default, but not in a consistent way, and with no explanation.</p>
+<p>Also, what&#8217;s up with the &#8220;Official Meteor Tutorial&#8221; link in the <a href="https://www.meteor.com/tools/resources">Resources</a> page linking to the <a href="https://www.meteor.com/install">install page</a>, and not to an actual <em>tutorial</em>..?</p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/meteor-resources-page-wtf-png/'><img width="300" height="166" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-resources-page-wtf.png?fit=300%2C166" class="attachment-medium size-medium" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-resources-page-wtf.png?w=1011 1011w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-resources-page-wtf.png?resize=300%2C166 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-resources-page-wtf.png?resize=980%2C544 980w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-resources-page-wtf.png?resize=573%2C318 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p>While going through the tutorial, I found myself copying &amp; pasting some React-specific stuff without really understanding what it is doing. I wonder how much React background is needed to start using Meteor with React. Is strong React knowledge a prerequisite? If it is &#8211; it should be clearly stated somewhere (e.g., at the beginning of the tutorial).</p>
+<p>The &#8220;Running on Mobile&#8221; section says I can install the meteor mobile SDK&#8217;s by running some meteor commands. But when running these commands, I get links to other documentation about manually installing some other environments for mobile development. If these commands are deprecated, there&#8217;s no reason for the tutorial to include them anymore &#8211; just send me straight to the other docs&#8230;</p>
+<h4>Security-related Feedback</h4>
+<p>Insecure defaults scare me. I realize that it allows for superior developer experience, but I&#8217;m scared nonetheless. See also what <a href="http://krebsonsecurity.com/2015/11/the-lingering-mess-from-default-insecurity">KrebsOnSecurity has to say on default insecurity</a>.</p>
+<p>I think this is such a big issue, it deserves its own post later on. I&#8217;ll hold on a bit with that post until I know more, so please, do refer me to more resources about Meteor security. Some specific alarm bells that went off in my head so far:</p>
+<ul>
+<li>Insecure defaults are dangerous, because developers are lazy, and convenient defaults tend to remain.
+<ul>
+<li>When running <strong>and deploying</strong> my Meteor app, there was nothing warning me about my app being insecure!</li>
+</ul>
+</li>
+<li>When platform creators (e.g., MDG) make conscious choices that are insecure, it might be telling about a mindset that is prevalent in the platform, the ecosystem, and the development processes. I don&#8217;t really know, I&#8217;m just raising my concerns&#8230;</li>
+<li>I can accept insecure choices that have good reasons. I believe that in this case the reasoning was &#8220;developer productivity&#8221; or something like that. I don&#8217;t think I&#8217;m ready to argue about the root reasoning. I do think that these decisions must come with <strong>BIG RED WARNINGS</strong>, and not little side notes in late tutorial steps.</li>
+</ul>
+<div id="tr_shareit-178120" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">Insecure defaults scare me</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=Insecure+defaults+scare+me https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" data-name="Official Meteor Tutorial: TODO App With React" data-description="Insecure defaults scare me"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&name=Official Meteor Tutorial: TODO App With React&description=Insecure+defaults+scare+me&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150&description=Insecure+defaults+scare+me" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=Insecure+defaults+scare+me&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<p>I&#8217;d love to hear from users in the comments! How many Meteor users took notice of the security-related notes in the tutorial? How many remember to disable insecure packages in new projects? In what stage? How many have deployed insecure projects? Would it bother you if Meteor had secure defaults? (meaning you would need to implement publish-subscribe and methods when starting a new project)</p>
+<h3>Summary</h3>
+<p>Woohoo! I finished the tutorial! That was fun <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Now what?</p>
+<p>I think that while I go along with the <a href="https://www.ostricher.com/2015/11/meteor-coursera-course/">Intro to Meteor Courser course</a>, I&#8217;ll start working on <a href="https://www.ostricher.com/2015/11/kambatz-the-app-im-building-to-learn-meteor/">my app</a>. Anyone has input on the Blaze vs. Angular vs. React decision for my app? <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<div id="tr_shareit-178121" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">I finished the #Meteor TODO App with #React tutorial! It was fun!</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=I+finished+the+%23Meteor+TODO+App+with+%23React+tutorial%21+It+was+fun%21 https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/" data-name="Official Meteor Tutorial: TODO App With React" data-description="I finished the #Meteor TODO App with #React tutorial! It was fun!"data-picture="https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&name=Official Meteor Tutorial: TODO App With React&description=I+finished+the+%23Meteor+TODO+App+with+%23React+tutorial%21+It+was+fun%21&picture=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/&media=https://i2.wp.com/www.ostricher.com/io-content/uploads/2015/11/meteor-todo-react-tutorial-step-10-result.png?resize=150%2C150&description=I+finished+the+%23Meteor+TODO+App+with+%23React+tutorial%21+It+was+fun%21" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=I+finished+the+%23Meteor+TODO+App+with+%23React+tutorial%21+It+was+fun%21&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1781</post-id>	<feedburner:origLink>https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/</feedburner:origLink></item>
+		<item>
+		<title>I Joined the Intro to Meteor Coursera Course</title>
+		<link>http://feedproxy.google.com/~r/theostricher/~3/zFgqPbvqV7s/</link>
+		<comments>https://www.ostricher.com/2015/11/meteor-coursera-course/#comments</comments>
+		<pubDate>Mon, 23 Nov 2015 20:19:06 +0000</pubDate>
+		<dc:creator><![CDATA[Itamar Ostricher]]></dc:creator>
+				<category><![CDATA[Software Engineering]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[meteor]]></category>
+		<category><![CDATA[programming]]></category>
+
+		<guid isPermaLink="false">https://www.ostricher.com/?p=1772</guid>
+		<description><![CDATA[After installing Meteor, I thought I will continue with the tutorial, in my learning process. But then I found out that Coursera is offering a free Introduction to Meteor.js Development course that just started last week. Since the course was approaching the end of week 1, I decided I&#8217;d go ahead and join the it!&#160;<a href="https://www.ostricher.com/2015/11/meteor-coursera-course/" class="read-more">Continue Reading</a>]]></description>
+	<script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("# .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script>			<content:encoded><![CDATA[<p>After <a href="https://www.ostricher.com/2015/11/installing-meteor-first-step-in-meteor-training/">installing Meteor</a>, I thought I will continue with <a href="https://www.meteor.com/tutorials/blaze/creating-an-app">the tutorial</a>, in my <a href="https://www.ostricher.com/2015/11/introducing-learning-meteor-project/">learning process</a>. But then I found out that <a href="https://www.coursera.org/">Coursera</a> is offering a free <a href="https://www.coursera.org/learn/meteor-development">Introduction to Meteor.js Development course</a> that just started last week. Since the course was approaching the end of week 1, I decided I&#8217;d go ahead and join the it!</p>
+<p><span id="more-1772"></span></p>
+<div id="tr_shareit-177222" class="tr_shareit-wrapper center">
+					<div class="tr_shareit">
+						<div class="tr_shareit-content">I&#8217;m taking Coursera&#8217;s Intro to Meteor.js Development course, from University of London</div>
+						<!-- .tr-shareit-content -->
+						<ul class="tr_shareit-bar"><li class="tr_shareit-twitter"><a href="http://twitter.com/home?status=I'm+taking+Coursera's+Intro+to+Meteor.js+Development+course%2C+from+University+of+London https://www.ostricher.com/2015/11/meteor-coursera-course/" target="_blank" title="Share on Twitter"><i class="icon-twitter"></i><span>Share on Twitter</span></a></li><li class="tr_shareit-facebook" data-link="https://www.ostricher.com/2015/11/meteor-coursera-course/" data-name="I Joined the Intro to Meteor Coursera Course" data-description="I&#039;m taking Coursera&#039;s Intro to Meteor.js Development course, from University of London"data-picture="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-coursera-thumb.png?resize=150%2C150"><a href="http://www.facebook.com/dialog/feed?app_id=1447249925543116&redirect_uri=https://www.ostricher.com/&display=popup&link=https://www.ostricher.com/2015/11/meteor-coursera-course/&name=I Joined the Intro to Meteor Coursera Course&description=I'm+taking+Coursera's+Intro+to+Meteor.js+Development+course%2C+from+University+of+London&picture=https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-coursera-thumb.png?resize=150%2C150" title="Share on Facebook"><i class="icon-facebook"></i><span>Share on Facebook</span></a></li><li class="tr_shareit-pinterest"><a href="http://pinterest.com/pin/create/button/?url=https://www.ostricher.com/2015/11/meteor-coursera-course/&media=https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-coursera-thumb.png?resize=150%2C150&description=I'm+taking+Coursera's+Intro+to+Meteor.js+Development+course%2C+from+University+of+London" target="_blank" title="Share on Pinterest"><i class="icon-pinterest-circled"></i><span>Share on Pinterest</span></a></li><li class="tr_shareit-tumblr"><a href="http://www.tumblr.com/share/quote?quote=I'm+taking+Coursera's+Intro+to+Meteor.js+Development+course%2C+from+University+of+London&source=The+Ostrich" target="_blank" title="Share on Tumblr"><i class="icon-tumblr"></i><span>Share on Tumblr</span></a></li></ul>
+						<!-- .tr-shareit-bar -->
+					</div>
+					<!-- .tr-shareit -->
+				</div>
+				<!-- .tr-shareit-wrapper -->
+<h3>Why MOOC?</h3>
+<p>I don&#8217;t usually take online courses to learn things like Meteor (or, more generally, development technologies). From my experience, &#8220;just using it to do something&#8221; is more efficient. But that experience is based on mandatory C++ courses in undergrad school 12 years ago, so it may not be very up-to-date <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> .</p>
+<p>The trigger for me in this case is the timing. The fact that the course started just when I started my learning process seemed like a lucky coincidence that I shouldn&#8217;t &#8220;pass&#8221;.</p>
+<p>I think that if I wasn&#8217;t doing this documented learning process I would probably skip the course. Documenting somehow motivates me to cover more of the available learning resources &#8211; maybe so I can provide wider feedback?</p>
+<h3>About the course</h3>
+<p>This course is actually the third course out of six in a <a href="https://www.coursera.org/specializations/website-development">Responsive website development and design specialization</a> that Coursera is offering, in cooperation with the University of London. I&#8217;m not taking the specialization, just this course, so I might be missing some background from the previous two courses.</p>
+<p>It&#8217;s a 4-week course, instructed by <a href="https://www.coursera.org/instructor/matthew-yee-king">Dr. Matthew Yee-King</a>, from the Computer Department, Goldsmith, University of London.</p>
+<p>Here&#8217;s the &#8220;about the course snippet&#8221;:</p>
+
+<a href='https://www.ostricher.com/2015/11/meteor-coursera-course/intro-to-meteor-about-course-png/'><img width="300" height="250" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-about-course.png?fit=300%2C250" class="attachment-medium size-medium" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-about-course.png?w=1202 1202w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-about-course.png?resize=300%2C250 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-about-course.png?resize=1024%2C852 1024w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-about-course.png?resize=883%2C735 883w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2015/11/intro-to-meteor-about-course.png?resize=517%2C430 517w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<p>Of course, you can read this, and more about the syllabus on the <a href="https://www.coursera.org/learn/meteor-development">course site</a>.</p>
+<h3>My impression of the course so far</h3>
+<p>I completed the first week of the course over the weekend. It included watching videos about installing Meteor, creating projects, running them, and some mocking with templates and template helpers. Every instructional video was ~10 minutes long, with a short follow-up quiz to verify understanding (or listening, to be exact).</p>
+<p>The final &#8220;week 1 assignment&#8221; included a bigger quiz and a programming assignment. The programming assignment involved creating a basic app (just like I did when <a href="https://www.ostricher.com/2015/11/installing-meteor-first-step-in-meteor-training/">I installed Meteor</a>), and then performing some changes to the HTML, the template itself, and adding a simple template helper.</p>
+<p>The approach to evaluation is interesting. For every step I uploaded a screenshot of my running app, and part of the course requirements are to review submissions of other participants. Each submission should receive 3 &#8220;crowd-sourced&#8221; reviews. I don&#8217;t think this is a good approach to evaluation, but that&#8217;s how it&#8217;s working in this course (at least so far).</p>
+<p>The content so far is really good in my opinion. The instructor is clear and fluent. The rate of information is a bit challenging for beginners, though. I don&#8217;t know if this is related to the fact that I skipped two background courses, but I feel that we&#8217;re going through tons of new concepts very quickly, and it&#8217;s going to be hard to solidify the concepts that way.</p>
+<p>I think I have a good grasp of the client-server architecture, but when it comes to the details of the client itself, it gets mushy for me. What&#8217;s the relation between Blaze, Spacebars, Handlebars, and who&#8217;s responsible for what? When using Bootstrap, how does it fit in the client architecture? Does it interact with Blaze in some way? I saw that Blaze can be replaced with React or Angular &#8211; what does that mean, and how does that affect everything else?</p>
+<h3>Summary</h3>
+<p>I&#8217;m guessing it&#8217;s too late to join the course now, if you&#8217;re interested, but there probably will be more classes soon.</p>
+<p>I&#8217;ll update with further impressions as the course progresses.</p>
+<p>Are you taking other courses in the specialization? Would you recommend it?</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.ostricher.com/2015/11/meteor-coursera-course/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+	<post-id xmlns="com-wordpress:feed-additions:1">1772</post-id>	<feedburner:origLink>https://www.ostricher.com/2015/11/meteor-coursera-course/</feedburner:origLink></item>
+	</channel>
+</rss><!-- Dynamic page generated in 1.814 seconds. --><!-- Cached page generated by WP-Super-Cache on 2018-04-27 18:33:10 --><!-- Compression = gzip -->

@@ -1,0 +1,4 @@
+[28-May-2015 17:51:00 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/io-content/plugins/hello.php on line 60
+[03-Jul-2015 15:40:31 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/io-content/plugins/hello.php on line 60
+[17-Jul-2015 01:29:32 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/io-content/plugins/hello.php on line 60
+[17-Aug-2015 08:02:50 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/io-content/plugins/hello.php on line 60

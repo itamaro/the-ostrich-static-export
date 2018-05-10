@@ -1,0 +1,73 @@
+/**
+ * Editor Dialog
+ */
+body#wp-admin {
+	margin: 0;
+}
+#shortcode-fields *{
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+}
+#shortcode-fields select{
+	padding: 2px;
+}
+#shortcode-fields .select-multiple {
+	padding: 4px 5px;
+}
+#shortcode-fields small {
+	font-size: 11px;
+}
+#shortcode-fields .label-inner{
+	margin-bottom: 5px;
+	display: block;
+	cursor: pointer;
+}
+#shortcode-fields .description{
+	margin-bottom: 10px;
+}
+#shortcode-fields .mceActionPanel{
+	clear: both;
+	display: block;
+	overflow: hidden;
+	padding: 10px 20px;
+	margin: 0;
+	background: #eee;
+	border-top: 1px solid #ccc;
+}
+
+#shortcode-fields .current{
+	margin-bottom: 15px;
+	padding: 0 20px;
+}
+
+#shortcode-fields input[type=text], #shortcode-fields textarea {
+	padding: 5px;
+	width: 97%;
+}
+/* Image Preview */
+.image-preview img {
+	max-width: 98%;
+}
+.image-preview-input, #shortcode-fields .image-preview-input {
+	clear: both;
+	display: block;
+}
+
+#delete-action {
+	float: left;
+	line-height: 25px;
+}
+#delete-action .submitdelete {
+	color: #f00;
+	border-bottom: 1px solid #f00;
+	font-size: 11px;
+	text-decoration: none;
+}
+#delete-action .submitdelete:hover {
+	color: #fff;
+	background-color: #f00;
+	border-bottom-color: #f00;
+}
+#wp-link-update {
+	float: right;
+}

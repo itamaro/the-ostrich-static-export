@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <!--<![endif]-->
+<head>
+<base href="https://www.ostricher.com" />
+
+	<title>Reverse Engineer A/C Remote with Arduino | The Ostrich</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+		<link rel="icon" href="/io-content/uploads/theme-images/favicon.png" type="image/x-icon" />
+		
+	
+	
+	<script type='text/javascript'>
+	(function() {
+if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+var msViewportStyle = document.createElement("style");
+msViewportStyle.appendChild(
+document.createTextNode("@-ms-viewport{width:auto!important}")
+);
+document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+}
+})();
+</script>
+<!-- Jetpack Site Verification Tags -->
+<meta name="google-site-verification" content="Po_E-eL7srSzieLmesJQntF7f-r3bV83AW_HQTe5EqE" />
+
+
+<!-- All in One SEO Pack 2.3.13.2 by Michael Torbert of Semper Fi Web Design[766,825] -->
+<link rel="author" href="https://plus.google.com/+ItamarOstricher/" />
+<meta name="description"  content="In order to be able to control my A/C over the Internet, I needed to reverse engineer the IR remote commands. Here's how I did it with an Arduino." />
+
+<meta name="keywords"  content="arduino,iot,reverse,automation,home-control" />
+
+<link rel="canonical" href="https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/" />
+<meta property="og:title" content="Reverse Engineer A/C Remote with Arduino | The Ostrich" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/" />
+<meta property="og:image" content="http://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?fit=606%2C600" />
+<meta property="og:site_name" content="The Ostrich" />
+<meta property="og:description" content="In order to be able to control my A/C over the Internet, I needed to reverse engineer the IR remote commands. Here&#039;s how I did it with an Arduino." />
+<meta property="article:published_time" content="2013-09-14T12:00:18Z" />
+<meta property="article:modified_time" content="2014-09-07T17:55:41Z" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Reverse Engineer A/C Remote with Arduino | The Ostrich" />
+<meta name="twitter:description" content="In order to be able to control my A/C over the Internet, I needed to reverse engineer the IR remote commands. Here&#039;s how I did it with an Arduino." />
+<meta name="twitter:image" content="http://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?fit=606%2C600" />
+<meta itemprop="image" content="http://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?fit=606%2C600" />
+			<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-48565506-1', 'auto');
+			
+			ga('send', 'pageview');
+			</script>
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//s.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+
+
+
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.ostricher.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.10"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='adsns_css-css'  href='https://www.ostricher.com/io-content/plugins/adsense-plugin/css/adsns.css?ver=1.44' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='https://www.ostricher.com/io-content/plugins/contact-form-7/includes/css/styles.css?ver=4.5' type='text/css' media='all' />
+<link rel='stylesheet' id='colorbox-css-css'  href='https://www.ostricher.com/io-content/plugins/easy-image-display/css/colorbox.css?ver=4.7.10' type='text/css' media='all' />
+<link rel='stylesheet' id='zilla-likes-css'  href='https://www.ostricher.com/io-content/plugins/zilla-likes/styles/zilla-likes.css?ver=4.7.10' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme-child/bootstrap.css?ver=2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='responsive-css'  href='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme-child/responsive.css?ver=2.3' type='text/css' media='all' />
+<link rel='stylesheet' id='magnificpopup-css'  href='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme-child/css/magnificpopup.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='mainstyle-css'  href='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme-child/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='owl-css'  href='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme-child/css/owl.carousel.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='options_typography_Lato:100,300,400,700,900-css'  href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900&#038;subset=latin' type='text/css' media='all' />
+<link rel='stylesheet' id='mc4wp-form-basic-css'  href='https://www.ostricher.com/io-content/plugins/mailchimp-for-wp/assets/css/form-basic.min.css?ver=4.1.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://www.ostricher.com/io-content/plugins/jetpack/css/jetpack.css?ver=4.9' type='text/css' media='all' />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.1.11 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	var disableStr = 'ga-disable-UA-48565506-1';
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-48565506-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+<script type='text/javascript' src='https://www.ostricher.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://www.ostricher.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/js/modernizr.js?ver=2.0.6'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/jetpack/modules/related-posts/related-posts.js?ver=20150408'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var zilla_likes = {"ajaxurl":"http:\/\/www.ostricher.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/zilla-likes/scripts/zilla-likes.js?ver=4.7.10'></script>
+<link rel='https://api.w.org/' href='https://www.ostricher.com/wp-json/' />
+
+
+<link rel='next' title='Controlling My A/C With an Arduino' href='https://www.ostricher.com/2013/09/my-arduino-powered-ac-control/' />
+
+<link rel='shortlink' href='http://wp.me/p4XcCP-5Z' />
+
+
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'>
+<link rel='dns-prefetch' href='//s0.wp.com'>
+<link rel='dns-prefetch' href='//s1.wp.com'>
+<link rel='dns-prefetch' href='//s2.wp.com'>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'>
+<link rel='dns-prefetch' href='//0.gravatar.com'>
+<link rel='dns-prefetch' href='//1.gravatar.com'>
+<link rel='dns-prefetch' href='//2.gravatar.com'>
+<link rel='dns-prefetch' href='//i0.wp.com'>
+<link rel='dns-prefetch' href='//i1.wp.com'>
+<link rel='dns-prefetch' href='//i2.wp.com'>
+<style type="text/css">.logo {
+    margin: 10px auto;
+}.top-panel-button .toggle-button {color:#e1e1e1}.top-panel-button {border-color:#eeeeee}.nav__primary {background:#ffffff}@media all and (min-width: 800px) {.flexnav > li > a:after {color:#eeeeee}}.nav__primary {border-color:#d6d6d6}.logo_tagline {color:#444444}.header-overlay {background:#ffffff}.header-overlay {-moz-opacity: 0.85; -khtml-opacity: 0.85; opacity: 0.85;}body { background-image:url(/io-content/uploads/theme-images/bg-diaglines.jpg); background-repeat:repeat; background-position:top center;  background-attachment:scroll; }body { background-color:#ffffff;}.headerstyler { background-color:#ffffff;}</style><style type="text/css">.dropcap.bl:first-letter, .text-highlight, .services-grid  .hr, div.jp-play-bar, div.jp-volume-bar-value, .blue, #ascrail2000 div, .progress .bar, .ourclients .hr, .clients .hr, .zoom-icon, .zoom-insta, .zoom-icon-video, .image-mail:hover .zoom-mail, .format-quote, .isotope-item .format-quote, .post-header-article, #showTop, .cbp-spmenu {
+background:#ed1d24!important;
+}.twitter .stream-item-header .account-group .username, .error404-holder_num, .twitter .stream-item-header .account-group .username, .twitter i, .private-image h3, .twitter-code i {
+color:#ed1d24;
+}.hi-icon-effect-1 .hi-icon {
+box-shadow: 0 0 0 2px #ed1d24;
+}.hi-icon-effect-1 .hi-icon:after {
+box-shadow: 0 0 0 4px #ed1d24;
+}.flexnav ul li:hover > a, .flexnav li li > a:hover, .flexnav li li.sfHover > a, .flexnav li li.current-menu-item > a { background: #ed1d24 url(https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/images/line-menu.png) repeat-x bottom; }.flexnav li ul li a { color: #ffffff}.flexnav li li > a:hover, .flexnav li li.current-menu-item > a { color: #231f20}.flexnav .sub-menu  > li { background: #ed1d24}.sub-menu li:first-child a:after { border-bottom: 11px solid #ed1d24}.flexnav > li > a span, .flexnav > li.current-menu-item > a span, .flexnav > li.current-menu-ancestor  > a span, .flexnav > li > a span, .flexnav li:hover > a span, .flexnav > li > a:hover span { background: #bcbdc0; }.flexnav > li > a:hover {
+ color:#bcbdc0;
+}.flexnav > li.current-menu-item > a, .flexnav > li.current-menu-ancestor  > a {
+ color:#231f20;
+}.title-section h2 {
+    color: #ed1d24;
+}a, .social_link, .related-posts_item a, .post_author a, .breadcrumb a, .post-list a, .comments-custom a, #wp-calendar a, .tagcloud a, .post_date_grid_filtr a, .flexslider a, .footer .social a, .fs-carousel-header a:hover {color:#ed1d24}.btn-color {background-color:#ed1d24!important; border: 2px solid #ed1d24!important;}.btn-white:hover, .btn-white:focus {background-color:#ed1d24!important; border-color:#ed1d24!important;}.link-image a p {background:#ed1d24;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";filter: alpha(opacity=90);-moz-opacity: 0.9;-khtml-opacity: 0.9;opacity: 0.9;}.link-image a:hover p {background:#ed1d24;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";filter: alpha(opacity=100);-moz-opacity: 1.0;-khtml-opacity: 1.0;opacity: 1.0;}.form-submit input[type="submit"]:hover, .active .btn, .btn:hover, .btn:focus {
+  background: #ed1d24;
+  border-color: #ed1d24;
+}.btn-1c:after {
+  background: #ed1d24;
+}.btn-1c:hover, .btn-1c:active {
+  border: 3px solid #ed1d24;
+}.tagcloud a {
+  border: 1px solid #ed1d24;
+}.flexslider a:hover {
+  color: #222222!important;
+}</style><style type="text/css">/* MailChimp for WP - Checkbox Styles */
+.mc4wp-checkbox-wp-comment-form {
+  clear: both;
+  display: block;
+  position: static;
+  width: auto; }
+  .mc4wp-checkbox-wp-comment-form input {
+    float: none;
+    width: auto;
+    position: static;
+    margin: 0 6px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    display: inline-block !important;
+    max-width: 21px;
+    -webkit-appearance: checkbox; }
+  .mc4wp-checkbox-wp-comment-form label {
+    float: none;
+    display: block;
+    cursor: pointer;
+    width: auto;
+    position: static;
+    margin: 0 0 16px 0; }
+</style><style type="text/css">/* MailChimp for WP - Checkbox Styles */
+.mc4wp-checkbox-wp-registration-form {
+  clear: both;
+  display: block;
+  position: static;
+  width: auto; }
+  .mc4wp-checkbox-wp-registration-form input {
+    float: none;
+    width: auto;
+    position: static;
+    margin: 0 6px 0 0;
+    padding: 0;
+    vertical-align: middle;
+    display: inline-block !important;
+    max-width: 21px;
+    -webkit-appearance: checkbox; }
+  .mc4wp-checkbox-wp-registration-form label {
+    float: none;
+    display: block;
+    cursor: pointer;
+    width: auto;
+    position: static;
+    margin: 0 0 16px 0; }
+</style>
+<style type='text/css'>
+h1 { font-weight: 200; font-style: normal; font-size: 60px; line-height: 60px; font-family: Lato;  color:#a7a9ac; }
+h2 { font-weight: 200; font-style: normal; font-size: 40px; line-height: 40px; font-family: Lato;  color:#a7a9ac; }
+h3 { font-weight: 200; font-style: normal; font-size: 34px; line-height: 34px; font-family: Lato;  color:#a7a9ac; }
+h4 { font-weight: 200; font-style: normal; font-size: 24px; line-height: 28px; font-family: Lato;  color:#a7a9ac; }
+h5 { font-weight: 200; font-style: normal; font-size: 21px; line-height: 32px; font-family: Lato;  color:#a7a9ac; }
+h6 { font-weight: 200; font-style: normal; font-size: 17px; line-height: 24px; font-family: Lato;  color:#a7a9ac; }
+.main-holder, .mfp-wrap { font-weight: 300; font-style: normal; font-size: 16px; line-height: 31px; font-family: Lato;  color:#000000; }
+.logo_h__txt, .logo_link { font-weight: 400; font-style: normal; font-size: 73px; line-height: 45px; font-family: playfair_displayregular;  color:#222222; }
+.flexnav > li > a { font-weight: 300; font-style: normal; font-size: 12px; line-height: 21px; font-family: Lato;  color:#939598; }
+.nav.footer-nav a { font-weight: 300; font-style: normal; font-size: 12px; line-height: 22px; font-family: Lato;  color:#818285; }
+</style>
+<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><style type="text/css" id="syntaxhighlighteranchor"></style>
+	
+<!--[if IE 8 ]>
+<link rel="stylesheet" id="stylesheet-ie8" type="text/css" href="https://www.ostricher.com/io-content/themes/BUZZBLOG-theme-child/ie8.css" />
+	<script src="https://www.ostricher.com/io-content/themes/BUZZBLOG-theme-child/js/respond.js"></script>
+<![endif]-->
+</head>
+
+<body class="post-template-default single single-post postid-371 single-format-standard cat-59-id">
+	
+			<div id="stickynot" class="main-holder" style="margin-top:0px;">
+<header id="headerfix" class="headerstyler headerphoto normal_header" style="">
+<div class="header-overlay"></div>
+<div class="top-panel22 hidden-phone"> 
+    <div class="top-panel-button">
+	<a class="popup-with-zoom-anim toggle-button md-trigger" href="#small-dialog"><i class="icon-search-2 icon-2x"></i></a>
+    </div>
+	<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+	<!-- BEGIN SEARCH FORM -->  
+	<div class="sb-search">
+						<form class="navbar-form" method="get" action="https://www.ostricher.com/" accept-charset="utf-8">
+							<input class="sb-search-input" placeholder="Search term..." type="text" value="" name="s">
+						</form>
+					</div>
+<!-- END SEARCH FORM -->	</div> 
+</div>
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span12">
+				
+<div class="row-fluid">
+
+    <div class="span12">
+    	<!-- BEGIN LOGO -->                     
+<div class="logo">                            
+												<h1 class="logo_h logo_h__txt"><a href="https://www.ostricher.com/" class="logo_h logo_h__img"><img src="/io-content/uploads/theme-images/logo-ostrich.jpg" alt="The Ostrich" title="Break; Build; Repeat;"></a></h1>
+												
+</div>
+<!-- END LOGO -->    </div>
+	</div>
+	<div class="row-fluid post-header">
+	<div class="span12">
+    			<!-- BEGIN MAIN NAVIGATION  -->
+		<div class="menu-button"><i class="icon-menu"></i>
+					<a style="position:relative;z-index:100;color:#222222; margin-left:12px;display:inline-block;" class="popup-with-zoom-anim toggle-button md-trigger" href="#small-dialog"><i class="icon-search-1"></i></a>
+	<div id="small-dialogs" class="zoom-anim-dialog mfp-hide">
+	<!-- BEGIN SEARCH FORM -->  
+	<div class="sb-search">
+						<form class="navbar-form" method="get" action="https://www.ostricher.com/" accept-charset="utf-8">
+							<input class="sb-search-input" placeholder="Search term..." type="text" value="" name="s">
+						</form>
+					</div>
+<!-- END SEARCH FORM -->	</div> 
+			</div>
+		<nav class="nav nav__primary clearfix"> 
+			<ul data-breakpoint="800" id="menu-main" class="flexnav"><li id="menu-item-800" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/">Home</a></li>
+<li id="menu-item-793" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.ostricher.com/about/">About</a></li>
+<li id="menu-item-525" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="https://www.ostricher.com/projects/">Side Projects</a>
+<ul class="sub-menu">
+	<li id="menu-item-529" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.ostricher.com/active-projects/">Active Projects</a></li>
+	<li id="menu-item-526" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.ostricher.com/pending-projects/">Pending Projects</a></li>
+	<li id="menu-item-527" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.ostricher.com/on-hold-projects/">On-Hold Projects</a></li>
+	<li id="menu-item-528" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.ostricher.com/archived-projects/">Archived Projects</a></li>
+</ul>
+</li>
+<li id="menu-item-530" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#">Categories</a>
+<ul class="sub-menu">
+	<li id="menu-item-27" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="https://www.ostricher.com/category/compute/">Compute</a></li>
+	<li id="menu-item-923" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="https://www.ostricher.com/category/infosec/">Information Security</a></li>
+	<li id="menu-item-354" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="https://www.ostricher.com/category/lifehacking/">Lifehacking</a></li>
+	<li id="menu-item-532" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent"><a href="https://www.ostricher.com/category/make/">Make</a></li>
+	<li id="menu-item-533" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="https://www.ostricher.com/category/meta/">Meta</a></li>
+	<li id="menu-item-26" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="https://www.ostricher.com/category/mobile/">Mobile</a></li>
+	<li id="menu-item-924" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="https://www.ostricher.com/category/money/">Money Stuff</a></li>
+	<li id="menu-item-925" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="https://www.ostricher.com/category/personal/">Personal</a></li>
+	<li id="menu-item-926" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="https://www.ostricher.com/category/software-eng/">Software Engineering</a></li>
+</ul>
+</li>
+</ul>			
+		 </nav>
+		<!-- END MAIN NAVIGATION -->
+
+
+    </div>
+	
+
+</div>
+<!--<div class="row"> -->
+    
+<!-- </div> -->			</div>
+		</div>
+	</div>
+
+</header><div class="content-holder clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="row">
+                <div class="span12" id="title-header">
+                <div class="page-header">
+                <section class="title-section">
+                				                				          </section>
+            </div> 
+                </div>
+                   </div>
+                 <div class="row">
+                                   <div class="span8 right" id="content">
+                        <article id="post-371" class="post__holder post-371 post type-post status-publish format-standard has-post-thumbnail hentry category-make tag-arduino tag-automation tag-home-control cat-59-id">
+<div class="post-formats hidden-phone"><i class="icon-doc-text-1 icon-2x"></i></div>	<div class="row-fluid">
+	<div class="span12">
+		<header class="post-header">	
+					<h2 class="post-title">Using an Arduino to Reverse Engineer My A/C Remote</h2>
+			</header>
+		<!-- Post Meta -->
+	<div class="meta-space">
+				<span>By <a href="https://www.ostricher.com/author/itamar/" title="Posts by Itamar Ostricher" rel="author">Itamar Ostricher</a></span>
+					<span><i class="icon-calendar-2"></i> Saturday, September 14, 2013</span>
+					<span><i class="icon-comment-2"></i> <a href="https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/#comments" class="comments-link" >31</a></span>
+						<span class="post_category"><i class="icon-cloud-2"></i><a href="https://www.ostricher.com/category/make/" >Make</a></span>
+															<span><i class="icon-tag-2"></i>
+									<a href="https://www.ostricher.com/tag/arduino/" rel="tag">arduino</a>, <a href="https://www.ostricher.com/tag/automation/" rel="tag">automation</a>, <a href="https://www.ostricher.com/tag/home-control/" rel="tag">home-control</a>								</span>
+															
+		<!--// ItamarO addition begin -->
+				<span><i class="icon-book"></i><a href="https://www.ostricher.com/projects/ac-control/">A/C Control Project</a></span>
+				<!--// ItamarO addition end -->
+		
+				<span class="post_permalink"><i class="icon-attach-2"></i><a href="https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/" title="Permalink Using an Arduino to Reverse Engineer My A/C Remote">Permalink</a></span>
+				
+	<span><a href="#" class="zilla-likes" id="zilla-likes-371" title="Like this">0</a></span>	</div>
+	<!--// Post Meta -->
+			
+	<!-- Post Content -->
+	<div class="post_content">	
+				<div class="featured-thumbnail thumbnail norm"><img width="300" height="297" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?fit=300%2C297" class="attachment-medium size-medium wp-post-image" alt="" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?w=606 606w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?resize=150%2C150 150w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?resize=300%2C297 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?resize=434%2C430 434w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?resize=80%2C80 80w" sizes="(max-width: 300px) 100vw, 300px" /></div>
+	
+		<script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("#gallery-1 .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("#gallery-2 .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("#gallery-3 .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("#gallery-4 .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("#gallery-5 .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><script type="text/javascript">
+                jQuery(document).ready(function() {
+                  jQuery("#gallery-6 .gallery-icon a").colorbox({
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                  });
+                });
+            </script><p>I have central air-conditioning in my apartment, and it&#8217;s controlled by a remote, employing IR signals to send commands to the A/C control unit.</p>
+<p>As any decent geek would, I&#8217;d like to be able to control my A/C using other means (e.g., a smartphone).</p>
+<p>Towards that goal, I figured I should first reverse engineer the IR commands the remote sends to the A/C, so I could later send these commands using other methods.</p>
+<p>The gist: using an <a href="http://arduino.cc" title="Arduino">Arduino</a> Uno board with a Phototransistor circuit (see below), I was able to obtain the IR waveform using <a href="https://github.com/shirriff/Arduino-IRremote">Ken Shirriff&#8217;s Arduino IRremote library</a> (slightly <a href="https://github.com/itamaro/Arduino-IRremote/commit/98c0019050345c5fea4b38976d5d1507e3aa451c">modified</a>), and even graph these waveforms with <a href="http://matplotlib.org/index.html">Python&#8217;s matplotlib</a>, as shown below.</p>
+
+		<style type='text/css'>
+			#gallery-1 {
+				margin: auto;
+			}
+			#gallery-1 .gallery-item {
+				float: left;
+				margin-top: 10px;
+				text-align: center;
+				width: 50%;
+			}
+			#gallery-1 img {
+				border: 2px solid #cfcfcf;
+			}
+			#gallery-1 .gallery-caption {
+				margin-left: 0;
+			}
+			/* see gallery_shortcode() in wp-includes/media.php */
+		</style>
+		<div id='gallery-1' class='gallery galleryid-371 gallery-columns-2 gallery-size-medium'><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a href='https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-phototransistor-circuit.jpg'><img width="300" height="283" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-phototransistor-circuit.jpg?fit=300%2C283" class="attachment-medium size-medium" alt="" aria-describedby="gallery-1-561" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-phototransistor-circuit.jpg?w=351 351w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-phototransistor-circuit.jpg?resize=300%2C283 300w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+			</dt>
+				<dd class='wp-caption-text gallery-caption' id='gallery-1-561'>
+				Arduino PhotoTransistor IR Receiver Circuit
+				</dd></dl><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a href='https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/acremote-waveforms.png'><img width="300" height="182" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/acremote-waveforms.png?fit=300%2C182" class="attachment-medium size-medium" alt="" aria-describedby="gallery-1-562" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/acremote-waveforms.png?w=1742 1742w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/acremote-waveforms.png?resize=300%2C182 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/acremote-waveforms.png?resize=1024%2C621 1024w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/acremote-waveforms.png?resize=980%2C595 980w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/acremote-waveforms.png?resize=573%2C348 573w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+			</dt>
+				<dd class='wp-caption-text gallery-caption' id='gallery-1-562'>
+				Waveforms of 3 A/C command samples
+				</dd></dl><br style="clear: both" />
+		</div>
+
+<p>Keep reading for a full drill down, or jump straight into my <a href="https://github.com/itamaro/home-control-arduino">home-control-arduino GitHub project</a> for the actual code and documentation.</p>
+<p><span id="more-371"></span></p>
+<h3>Building the IR Receiver Circuit</h3>
+<p>Buy list:</p>
+<ul>
+<li><a href="https://www.sparkfun.com/products/retired/11227">SparkFun Inventor&#8217;s Kit for Arduino</a> (available in Israel via <a href="http://www.4project.co.il/product/228">4Project.co.il</a>, or via friends who sell their own kits (h/t YoniC) 🙂 ) (also see a <a href="http://www.amazon.com/gp/product/B009UKZV0A/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B009UKZV0A&amp;linkCode=as2&amp;tag=itamaostri-20">similar Arduino starter kit on Amazon</a><img alt="" height="1" src="http://ir-na.amazon-adsystem.com/e/ir?t=itamaostri-20&amp;l=as2&amp;o=1&amp;a=B009UKZV0A" style="text-decoration:none;border:0;padding:0;margin:0;" width="1" /> or on <a href="http://rover.ebay.com/rover/1/711-53200-19255-0/1?icep_ff3=9&amp;pub=5575061711&amp;toolid=10001&amp;campid=5337395209&amp;customid=arduino&amp;icep_uq=Arduino+SparkFun+inventor+kit&amp;icep_sellerId=&amp;icep_ex_kw=&amp;icep_sortBy=12&amp;icep_catId=&amp;icep_minPrice=&amp;icep_maxPrice=&amp;ipn=psmain&amp;icep_vectorid=229466&amp;kwid=902099&amp;mtid=824&amp;kw=lg">eBay</a><img alt="" src="http://rover.ebay.com/roverimp/1/711-53200-19255-0/1?ff3=9&amp;pub=5575061711&amp;toolid=10001&amp;campid=5337395209&amp;customid=arduino&amp;uq=Arduino+SparkFun+inventor+kit&amp;mpt=[CACHEBUSTER]" style="text-decoration:none;border:0;padding:0;margin:0;" />), that comes with <a href="http://arduino.cc/en/Main/arduinoBoardUno">Arduino UNO R3</a> (<a href="http://www.amazon.com/gp/product/B006H06TVG/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B006H06TVG&amp;linkCode=as2&amp;tag=itamaostri-20">Amazon</a><img alt="" height="1" src="http://ir-na.amazon-adsystem.com/e/ir?t=itamaostri-20&amp;l=as2&amp;o=1&amp;a=B006H06TVG" style="text-decoration:none;border:0;padding:0;margin:0;" width="1" />, <a href="http://rover.ebay.com/rover/1/711-53200-19255-0/1?icep_ff3=9&amp;pub=5575061711&amp;toolid=10001&amp;campid=5337395209&amp;customid=arduino&amp;icep_uq=Arduino+UNO&amp;icep_sellerId=&amp;icep_ex_kw=&amp;icep_sortBy=12&amp;icep_catId=&amp;icep_minPrice=&amp;icep_maxPrice=&amp;ipn=psmain&amp;icep_vectorid=229466&amp;kwid=902099&amp;mtid=824&amp;kw=lg">eBay</a><img alt="" src="http://rover.ebay.com/roverimp/1/711-53200-19255-0/1?ff3=9&amp;pub=5575061711&amp;toolid=10001&amp;campid=5337395209&amp;customid=arduino&amp;uq=Arduino+UNO&amp;mpt=[CACHEBUSTER]" style="text-decoration:none;border:0;padding:0;margin:0;" />), breadboard and a convenient holder for both (and lots of other useful stuff to get you going).</p>
+</li>
+<li>
+<p>A simple Phototransistor (like <a href="http://www.luckylightled.com/UploadFiles/LL-503PTC2E-1AD.pdf" class="broken_link" rel="nofollow">this one</a>, also from <a href="http://www.4project.co.il/product/1797">4Project.co.il</a>).</p>
+</li>
+</ul>
+<p>Assemble the components according to the schematic shown above, which will look something like this:</p>
+
+		<style type='text/css'>
+			#gallery-2 {
+				margin: auto;
+			}
+			#gallery-2 .gallery-item {
+				float: left;
+				margin-top: 10px;
+				text-align: center;
+				width: 100%;
+			}
+			#gallery-2 img {
+				border: 2px solid #cfcfcf;
+			}
+			#gallery-2 .gallery-caption {
+				margin-left: 0;
+			}
+			/* see gallery_shortcode() in wp-includes/media.php */
+		</style>
+		<div id='gallery-2' class='gallery galleryid-371 gallery-columns-1 gallery-size-medium'><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a href='https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-receiver-circuit.jpg'><img width="300" height="277" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-receiver-circuit.jpg?fit=300%2C277" class="attachment-medium size-medium" alt="" aria-describedby="gallery-2-558" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-receiver-circuit.jpg?w=800 800w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-receiver-circuit.jpg?resize=300%2C277 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-receiver-circuit.jpg?resize=794%2C735 794w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-receiver-circuit.jpg?resize=464%2C430 464w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+			</dt>
+				<dd class='wp-caption-text gallery-caption' id='gallery-2-558'>
+				IR Receiver Arduino Circuit
+				</dd></dl><br style="clear: both" />
+		</div>
+
+<p>Connect the Arduino to the PC via USB, and compile and upload my <a href="https://github.com/itamaro/home-control-arduino/tree/master/IRACreceiver">IRACreceiver</a> program to the board:</p>
+
+		<style type='text/css'>
+			#gallery-3 {
+				margin: auto;
+			}
+			#gallery-3 .gallery-item {
+				float: left;
+				margin-top: 10px;
+				text-align: center;
+				width: 100%;
+			}
+			#gallery-3 img {
+				border: 2px solid #cfcfcf;
+			}
+			#gallery-3 .gallery-caption {
+				margin-left: 0;
+			}
+			/* see gallery_shortcode() in wp-includes/media.php */
+		</style>
+		<div id='gallery-3' class='gallery galleryid-371 gallery-columns-1 gallery-size-medium'><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a href='https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-ide-iracreceiver-upload.png'><img width="219" height="300" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-ide-iracreceiver-upload.png?fit=219%2C300" class="attachment-medium size-medium" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-ide-iracreceiver-upload.png?w=520 520w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-ide-iracreceiver-upload.png?resize=219%2C300 219w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-ide-iracreceiver-upload.png?resize=314%2C430 314w" sizes="(max-width: 219px) 100vw, 219px" /></a>
+			</dt></dl><br style="clear: both" />
+		</div>
+
+<h3>Capturing A/C Commands</h3>
+<p>Now, with the circuit built and the program loaded, open the Arduino Serial Monitor, aim the A/C remote at the phototransistor, and press buttons on the remote to make it transmit IR signals to the receiver:</p>
+
+		<style type='text/css'>
+			#gallery-4 {
+				margin: auto;
+			}
+			#gallery-4 .gallery-item {
+				float: left;
+				margin-top: 10px;
+				text-align: center;
+				width: 100%;
+			}
+			#gallery-4 img {
+				border: 2px solid #cfcfcf;
+			}
+			#gallery-4 .gallery-caption {
+				margin-left: 0;
+			}
+			/* see gallery_shortcode() in wp-includes/media.php */
+		</style>
+		<div id='gallery-4' class='gallery galleryid-371 gallery-columns-1 gallery-size-medium'><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a href='https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg'><img width="300" height="297" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?fit=300%2C297" class="attachment-medium size-medium" alt="" aria-describedby="gallery-4-556" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?w=606 606w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?resize=150%2C150 150w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?resize=300%2C297 300w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?resize=434%2C430 434w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmit.jpg?resize=80%2C80 80w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+			</dt>
+				<dd class='wp-caption-text gallery-caption' id='gallery-4-556'>
+				Arduino IR Receiver in action
+				</dd></dl><br style="clear: both" />
+		</div>
+
+<p>and watch as the Arduino prints to the serial monitor the raw IR signals info:</p>
+
+		<style type='text/css'>
+			#gallery-5 {
+				margin: auto;
+			}
+			#gallery-5 .gallery-item {
+				float: left;
+				margin-top: 10px;
+				text-align: center;
+				width: 100%;
+			}
+			#gallery-5 img {
+				border: 2px solid #cfcfcf;
+			}
+			#gallery-5 .gallery-caption {
+				margin-left: 0;
+			}
+			/* see gallery_shortcode() in wp-includes/media.php */
+		</style>
+		<div id='gallery-5' class='gallery galleryid-371 gallery-columns-1 gallery-size-medium'><dl class='gallery-item'>
+			<dt class='gallery-icon landscape'>
+				<a href='https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-iracreceiver-monitor.png'><img width="300" height="234" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-iracreceiver-monitor.png?fit=300%2C234" class="attachment-medium size-medium" alt="" aria-describedby="gallery-5-559" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-iracreceiver-monitor.png?w=651 651w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-iracreceiver-monitor.png?resize=300%2C234 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-iracreceiver-monitor.png?resize=549%2C430 549w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/arduino-iracreceiver-monitor.png?resize=194%2C150 194w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+			</dt>
+				<dd class='wp-caption-text gallery-caption' id='gallery-5-559'>
+				Arduino IRACreceiver Monitor
+				</dd></dl><br style="clear: both" />
+		</div>
+
+<h3>Analyzing the A/C Commands</h3>
+<p>In order to produce nice graphs of these signals, like the one above, I created a data-set of A/C-command samples to process using my <a href="https://github.com/itamaro/home-control-arduino/blob/master/PyTools/IRAnalysis.py">IRAnalysis Python script</a>.</p>
+<p>But before that, a couple of words are in place concerning the specifics of this A/C remote and how it functions.</p>
+
+		<style type='text/css'>
+			#gallery-6 {
+				margin: auto;
+			}
+			#gallery-6 .gallery-item {
+				float: left;
+				margin-top: 10px;
+				text-align: center;
+				width: 100%;
+			}
+			#gallery-6 img {
+				border: 2px solid #cfcfcf;
+			}
+			#gallery-6 .gallery-caption {
+				margin-left: 0;
+			}
+			/* see gallery_shortcode() in wp-includes/media.php */
+		</style>
+		<div id='gallery-6' class='gallery galleryid-371 gallery-columns-1 gallery-size-medium'><dl class='gallery-item'>
+			<dt class='gallery-icon portrait'>
+				<a href='https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/theremote.jpg'><img width="150" height="300" src="https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/theremote.jpg?fit=150%2C300" class="attachment-medium size-medium" alt="" aria-describedby="gallery-6-557" srcset="https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/theremote.jpg?w=224 224w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/theremote.jpg?resize=150%2C300 150w, https://i1.wp.com/www.ostricher.com/io-content/uploads/2014/08/theremote.jpg?resize=215%2C430 215w" sizes="(max-width: 150px) 100vw, 150px" /></a>
+			</dt>
+				<dd class='wp-caption-text gallery-caption' id='gallery-6-557'>
+				The A/C Remote
+				</dd></dl><br style="clear: both" />
+		</div>
+
+<p>Basically, the communication channel between the remote and the A/C control unit is one-way &#8211; from the remote to the control unit. This means, among other things, that the remote has no knowledge of the current state of the A/C (whether it&#8217;s on or off, what state it is set to at the moment with respect to operation mode, fan speed, temperature, etc.). Because of this, every press of a button on the remote will send the entire state as it is currently presented on the display of the remote, including information about whether the power button was pressed or not.</p>
+<p>The implications of this include:</p>
+<ul>
+<li>By solely sending IR signals in lieu of the remote, it is not possible to explicitly control the On/Off state of the A/C, but only toggle the power state. If you think about this for a second, you can see this is not an issue when operating the remote locally, because the &#8220;human-in-the-loop&#8221; (you) knows the power state of the A/C, so the remote doesn&#8217;t need to. It becomes a problem once we take out the human from the loop &#8211; but that&#8217;s for another post.</p>
+</li>
+<li>
+<p>There are no &#8220;relative&#8221; commands (e.g. &#8220;increase temperature by 1 degree&#8221;) &#8211; only absolute ones, which means we need to map all possible state-combinations that we want to be able to send on behalf of the remote to their corresponding IR signals.</p>
+</li>
+</ul>
+<p>So, in order to build this mapping, I decided that I am only interested in a subset of state-combinations that include A/C mode (cool / heat / &#8230;), fan speed (low / high / auto) and the temperature. In addition, I need to include the power-button in the mapping (whether a command with a given mode-fan-temp combination should toggle the power state or leave it as it was).</p>
+<p>After all this, lets get back to the <a href="https://github.com/itamaro/home-control-arduino/blob/master/PyTools/IRAnalysis.py">IRAnalysis Python script</a>. The script expects to get a data-set of A/C-command samples as a collection of plaintext files (in a single directory). Each file has the state-mapping encoded in the filename (<code>Power-Mode-Fan-Temp</code>), and at least one IR capture as the content of the file (simply copy &amp; paste the captures from the serial monitor into the body of the file).</p>
+<p>For example, I have included in the GitHub project <a href="https://github.com/itamaro/home-control-arduino/tree/master/PyTools/test-data/IRdumps">three sample files</a>, that produce the graphs shown above using the script with the &#8220;graph&#8221; command.</p>
+<p>Since the Phototransistor is susceptible to ambient noise, together with the quantization noise that arises from the way the Arduino-IRremote library samples the signal, the readings produced may contain outliers. For that reason, it is highly recommended that all sample files contain multiple independent readings (say at least 3), so my script could try and detect anomalous readings.</p>
+<p>The script tries to do this by comparing each reading to the average signal of all readings, and flag any single reading that has an element differing by more than 100us from the average reading as anomalous.</p>
+<p>Whenever the script reports such anomalies, you should manually remove that outlying reading from the sample file, and maybe replace it with another, better, reading.</p>
+<p>Finally, it is a natural path to dig deeper in the waveforms of different A/C-command samples, and characterize (reverse engineer) them up to the level of understanding which part of the signal encodes which part of the state, and then use this characterization to recreate waveforms from a given state.</p>
+<p>I started looking into such undertakings (this is actually the reason that I implemented the graphing functionality), but pretty quickly I reached an understanding that it is not going to be easy (for example, I saw that two commands that differ only by 1 degree in the temperature value, differ in multiple regions of their respective waveforms) &#8211; so I left that part as an exercise for the devoted reader 🙂 (or a future self?)</p>
+<h3>Conclusion</h3>
+<p>With that, this post reaches its conclusion.</p>
+<p>Feel free to go on and read my other posts related to my <a href="https://www.ostricher.com/projects/ac-control/">A/C-control project</a>!</p>
+<ul class="display-posts-listing"><li class="listing-item"><a href="https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/', 'Using an Arduino to Reverse Engineer My A/C Remote');" class="title">Using an Arduino to Reverse Engineer My A/C Remote</a></li><li class="listing-item"><a href="https://www.ostricher.com/2013/09/my-arduino-powered-ac-control/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://www.ostricher.com/2013/09/my-arduino-powered-ac-control/', 'Controlling My A/C With an Arduino');" class="title">Controlling My A/C With an Arduino</a></li><li class="listing-item"><a href="https://www.ostricher.com/2013/09/ac-control-beep-is-for-feedback/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://www.ostricher.com/2013/09/ac-control-beep-is-for-feedback/', 'Using &#8220;Beeps&#8221; for Feedback from A/C commands');" class="title">Using &#8220;Beeps&#8221; for Feedback from A/C commands</a></li><li class="listing-item"><a href="https://www.ostricher.com/2013/10/ac-control-project-bringing-it-together/" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://www.ostricher.com/2013/10/ac-control-project-bringing-it-together/', 'A/C Control Project: Bringing it all Together');" class="title">A/C Control Project: Bringing it all Together</a></li></ul>
+
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>				<div class="clear"></div>
+	</div>
+	<!-- //Post Content -->	
+		
+</div></div>
+<!-- .share-buttons -->
+<div class="share-buttons">
+	
+<!-- <a class="facebook" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href="http://www.facebook.com/sharer/sharer.php?u=">Facebook</a> -->
+<div class="shareon">Share on:</div>
+<a class="hs-icon icon-facebook-1" onClick="window.open('http://www.facebook.com/sharer.php?u=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/','Facebook','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" href="http://www.facebook.com/sharer.php?u=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/"></a>
+<a class="hs-icon icon-twitter" onClick="window.open('http://twitter.com/share?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/&amp;text=Using%20an%20Arduino%20to%20Reverse%20Engineer%20My%20A/C%20Remote','Twitter share','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" href="http://twitter.com/share?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/&amp;text=Using%20an%20Arduino%20to%20Reverse%20Engineer%20My%20A/C%20Remote"></a>
+<a class="hs-icon icon-gplus" onClick="window.open('https://plus.google.com/share?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/','Google plus','width=585,height=666,left='+(screen.availWidth/2-292)+',top='+(screen.availHeight/2-333)+''); return false;" href="https://plus.google.com/share?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/"></a>
+<a class="hs-icon icon-digg" onClick="window.open('http://www.digg.com/submit?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/','Digg','width=715,height=330,left='+(screen.availWidth/2-357)+',top='+(screen.availHeight/2-165)+''); return false;" href="http://www.digg.com/submit?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/"></a>
+<a class="hs-icon icon-reddit" onClick="window.open('http://reddit.com/submit?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/&amp;title=Using%20an%20Arduino%20to%20Reverse%20Engineer%20My%20A/C%20Remote','Reddit','width=617,height=514,left='+(screen.availWidth/2-308)+',top='+(screen.availHeight/2-257)+''); return false;" href="http://reddit.com/submit?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/&amp;title=Using%20an%20Arduino%20to%20Reverse%20Engineer%20My%20A/C%20Remote"></a>
+<a class="hs-icon icon-linkedin" onClick="window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/','Linkedin','width=863,height=500,left='+(screen.availWidth/2-431)+',top='+(screen.availHeight/2-250)+''); return false;" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/"></a>
+<a class="hs-icon icon-pinterest" href='javascript:void((function()%7Bvar%20e=document.createElement(&apos;script&apos;);e.setAttribute(&apos;type&apos;,&apos;text/javascript&apos;);e.setAttribute(&apos;charset&apos;,&apos;UTF-8&apos;);e.setAttribute(&apos;src&apos;,&apos;http://assets.pinterest.com/js/pinmarklet.js?r=&apos;+Math.random()*99999999);document.body.appendChild(e)%7D)());'></a>
+<a class="hs-icon icon-stumbleupon" onClick="window.open('http://www.stumbleupon.com/submit?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/&amp;title=Using%20an%20Arduino%20to%20Reverse%20Engineer%20My%20A/C%20Remote','Stumbleupon','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" href="http://www.stumbleupon.com/submit?url=https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/&amp;title=Using%20an%20Arduino%20to%20Reverse%20Engineer%20My%20A/C%20Remote"></a>
+<a class="hs-icon icon-tumblr" onClick="window.open('http://www.tumblr.com/share/link?url=www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/&amp;name=Using%20an%20Arduino%20to%20Reverse%20Engineer%20My%20A/C%20Remote','Tumblr','width=600,height=300,left='+(screen.availWidth/2-300)+',top='+(screen.availHeight/2-150)+''); return false;" href="http://www.tumblr.com/share/link?url=www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/&amp;name=Using%20an%20Arduino%20to%20Reverse%20Engineer%20My%20A/C%20Remote"></a>
+</div><!-- //.share-buttons -->
+</article>					<!--BEGIN .pager .single-pager -->
+				<ul class="paging">
+	<li style="float:left;">
+		<a class="btn-pagination" href="https://www.ostricher.com/2013/08/launch-cmd-from-anywhere-with-ahk/" rel="prev">&laquo; Previous post</a>		</li><!--.previous-->
+	<li style="float:right;">
+		<a class="btn-pagination" href="https://www.ostricher.com/2013/09/my-arduino-powered-ac-control/" rel="next">Next Post &raquo;</a>	</li><!--.next-->
+	<div class="clear"></div>
+</ul><!--.pager-->
+
+	<div class="related-posts">
+							<h5 class="related-posts_h">Related Posts</h5>
+		
+			<ul class="related-posts_list clearfix">
+
+									<li class="related-posts_item">
+						
+							<figure class="featured-thumbnail thumbnail large">
+							<div class="hider-page"></div>
+								<a href="https://www.ostricher.com/2015/06/got-my-sensibo-kit/" title="Got My Sensibo Kit!"><img width="300" height="220" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/06/sensibo.png?resize=300%2C220" class="attachment-medium-thumb size-medium-thumb wp-post-image" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/06/sensibo.png?resize=300%2C220 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2015/06/sensibo.png?zoom=2&amp;resize=300%2C220 600w" sizes="(max-width: 300px) 100vw, 300px" /><span class="zoom-icon"></span></a>
+							</figure>
+												<h6><a href="https://www.ostricher.com/2015/06/got-my-sensibo-kit/" > Got My Sensibo Kit! </a></h6>
+					</li>
+									<li class="related-posts_item">
+						
+							<figure class="featured-thumbnail thumbnail large">
+							<div class="hider-page"></div>
+								<a href="https://www.ostricher.com/2014/11/sort-your-include-files/" title="Sort Your Include Files!"><img width="270" height="220" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/11/sort-a-to-z.png?resize=270%2C220" class="attachment-medium-thumb size-medium-thumb wp-post-image" alt="" /><span class="zoom-icon"></span></a>
+							</figure>
+												<h6><a href="https://www.ostricher.com/2014/11/sort-your-include-files/" > Sort Your Include Files! </a></h6>
+					</li>
+									<li class="related-posts_item">
+						
+							<figure class="featured-thumbnail thumbnail large">
+							<div class="hider-page"></div>
+								<a href="https://www.ostricher.com/2013/10/ac-control-project-bringing-it-together/" title="A/C Control Project: Bringing it all Together"><img width="300" height="220" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ac-ui-in-action.png?resize=300%2C220" class="attachment-medium-thumb size-medium-thumb wp-post-image" alt="" /><span class="zoom-icon"></span></a>
+							</figure>
+												<h6><a href="https://www.ostricher.com/2013/10/ac-control-project-bringing-it-together/" > A/C Control Project: Bringing it all Together </a></h6>
+					</li>
+									<li class="related-posts_item">
+						
+							<figure class="featured-thumbnail thumbnail large">
+							<div class="hider-page"></div>
+								<a href="https://www.ostricher.com/2013/09/ac-control-beep-is-for-feedback/" title="Using &#8220;Beeps&#8221; for Feedback from A/C commands"><img width="300" height="220" src="https://i0.wp.com/www.ostricher.com/io-content/uploads/2014/08/beep-1-energy.png?resize=300%2C220" class="attachment-medium-thumb size-medium-thumb wp-post-image" alt="" srcset="https://i0.wp.com/www.ostricher.com/io-content/uploads/2014/08/beep-1-energy.png?resize=300%2C220 300w, https://i0.wp.com/www.ostricher.com/io-content/uploads/2014/08/beep-1-energy.png?zoom=2&amp;resize=300%2C220 600w" sizes="(max-width: 300px) 100vw, 300px" /><span class="zoom-icon"></span></a>
+							</figure>
+												<h6><a href="https://www.ostricher.com/2013/09/ac-control-beep-is-for-feedback/" > Using &#8220;Beeps&#8221; for Feedback from A/C commands </a></h6>
+					</li>
+									<li class="related-posts_item">
+						
+							<figure class="featured-thumbnail thumbnail large">
+							<div class="hider-page"></div>
+								<a href="https://www.ostricher.com/2013/09/my-arduino-powered-ac-control/" title="Controlling My A/C With an Arduino"><img width="300" height="220" src="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmitter-circuit.jpg?resize=300%2C220" class="attachment-medium-thumb size-medium-thumb wp-post-image" alt="" srcset="https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmitter-circuit.jpg?resize=300%2C220 300w, https://i2.wp.com/www.ostricher.com/io-content/uploads/2014/08/ir-transmitter-circuit.jpg?zoom=2&amp;resize=300%2C220 600w" sizes="(max-width: 300px) 100vw, 300px" /><span class="zoom-icon"></span></a>
+							</figure>
+												<h6><a href="https://www.ostricher.com/2013/09/my-arduino-powered-ac-control/" > Controlling My A/C With an Arduino </a></h6>
+					</li>
+							</ul>
+	</div><!-- .related-posts -->
+				<!-- BEGIN Comments -->	
+		<div id="comments" class="comment-holder">
+		<h5 class="comments-h">31 Comments</h5>
+		<div class="pagination">
+		   
+		</div>
+		<ul class="commentlist">
+ 
+	   <li class="comment even thread-even depth-1" id="li-comment-9" class="clearfix">
+	     	<div id="comment-9" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://0.gravatar.com/avatar/?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo avatar-default' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='http://gravatar.com/marciofernandesrn' rel='external nofollow' class='url'>marciofernandesrn</a></span><br />
+					May 26, 2014	  		     		<p>thank you dude, your receiving sketch was all i needed to get the intervals and assembly program an atmega328p for my final semester project =)</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=9#respond' onclick='return addComment.moveForm( "comment-9", "9", "respond", "371" )' aria-label='Reply to marciofernandesrn'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment odd alt depth-2" id="li-comment-10" class="clearfix">
+	     	<div id="comment-10" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='http://itamaro.com' rel='external nofollow' class='url'>itamaro</a></span><br />
+					May 26, 2014	  		     		<p>My pleasure!<br />
+Glad to hear you found it helpful 🙂 </p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=10#respond' onclick='return addComment.moveForm( "comment-10", "10", "respond", "371" )' aria-label='Reply to itamaro'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+ 
+	   <li class="comment even thread-odd thread-alt depth-1" id="li-comment-32" class="clearfix">
+	     	<div id="comment-32" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://0.gravatar.com/avatar/0b735148ca108614ab332263969434bb?s=65&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0b735148ca108614ab332263969434bb?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://plus.google.com/112510792457674291193' rel='external nofollow' class='url'>Barak Weiss</a></span><br />
+					September 24, 2014	  		     		<p>Hi Itamar<br />
+I wrote an Electra A/C IR sender the uses IRremote, it might be helpful.<br />
+<a href="https://github.com/barakwei/IRelectra" rel="nofollow">https://github.com/barakwei/IRelectra</a></p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=32#respond' onclick='return addComment.moveForm( "comment-32", "32", "respond", "371" )' aria-label='Reply to Barak Weiss'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor odd alt depth-2" id="li-comment-33" class="clearfix">
+	     	<div id="comment-33" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					September 24, 2014	  		     		<p>Cool. Good stuff 🙂</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=33#respond' onclick='return addComment.moveForm( "comment-33", "33", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+ 
+	   <li class="comment even thread-even depth-1" id="li-comment-1488" class="clearfix">
+	     	<div id="comment-1488" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://0.gravatar.com/avatar/c1aaeb0a03db87c6761dc53982bb6180?s=65&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c1aaeb0a03db87c6761dc53982bb6180?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">David</span><br />
+					September 22, 2015	  		     		<p>Hi there! Some of the signals i receive  are 194 int long and some are 188 int long. Is it supposed to be like that? Am i foing something wrong here?</p>
+<p>Toda. Thank you<br />
+David</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1488#respond' onclick='return addComment.moveForm( "comment-1488", "1488", "respond", "371" )' aria-label='Reply to David'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor odd alt depth-2" id="li-comment-1489" class="clearfix">
+	     	<div id="comment-1489" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					September 22, 2015	  		     		<p>The signals are supposed to be repeatable, AFAIK, unless the same remote control button triggers different IR commands on every push&#8230; (Or if you&#8217;re trying with different remote buttons)</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1489#respond' onclick='return addComment.moveForm( "comment-1489", "1489", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment even depth-3" id="li-comment-1513" class="clearfix">
+	     	<div id="comment-1513" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://0.gravatar.com/avatar/c1aaeb0a03db87c6761dc53982bb6180?s=65&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c1aaeb0a03db87c6761dc53982bb6180?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='http://gravatar.com/pickeld' rel='external nofollow' class='url'>David</a></span><br />
+					September 28, 2015	  		     		<p>hey Itamar. it seems like my last post haven&#8217;t been sent,<br />
+i attached a screenshot of the IR output.<br />
+while pressing the same button (temp up) i get a different array long.<br />
+what seems to be the problem?</p>
+<p><a href="http://postimg.org/image/51ezxbuc5/" rel="nofollow">http://postimg.org/image/51ezxbuc5/</a></p>
+<p>thank you!<br />
+David</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1513#respond' onclick='return addComment.moveForm( "comment-1513", "1513", "respond", "371" )' aria-label='Reply to David'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor odd alt depth-4" id="li-comment-1516" class="clearfix">
+	     	<div id="comment-1516" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					September 28, 2015	  		     		<p>At least on my remote, &#8220;temp up&#8221; is not the same command every time, because it always sends the explicit temperature as shown on the remote. But it&#8217;s also possible that your environment is noisy (IR-wise), making measurements inconsistent.<br />
+What kind of remote and AC do you have? Can you try to record and retransmit the most basic commands (something like power on, with all other settings always the same, in a dark room, with the remote very close to the circuit)?</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1516#respond' onclick='return addComment.moveForm( "comment-1516", "1516", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment even depth-5" id="li-comment-1518" class="clearfix">
+	     	<div id="comment-1518" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://0.gravatar.com/avatar/c1aaeb0a03db87c6761dc53982bb6180?s=65&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c1aaeb0a03db87c6761dc53982bb6180?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='http://gravatar.com/pickeld' rel='external nofollow' class='url'>David</a></span><br />
+					September 28, 2015	  		     		<p>i am using the Electra remote (mine written ELCO),<br />
+i know each time you press the &#8216;temp up&#8217; button the command is different.<br />
+each time the remote sends a different array with the current settings (which are displayed on the remote)</p>
+<p>but the array length should stay the same. (isn&#8217;t it?)</p>
+<p>i will try to capture and retransmit the command, ill report the results</p>
+<p>thank you</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+										   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+ 
+	   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1506" class="clearfix">
+	     	<div id="comment-1506" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Andy</span><br />
+					September 26, 2015	  		     		<p>Hi there!<br />
+       I got the raw buff code from my ac remote. But im not sure how you generate the arduino code from that to send the ir signal to the ac. I created a text file named “Leave-Cool-Auto-25″ with my raw buffer data in it and put it in the same folder with the IRAnalysis Python script. Not sure if that is correct? However, the IRAnalysis Python script  couldn&#8217;t compile as well. My first error compiling the IRAnalysis Python script was empty character constant on &#8220;print &#8221;&#8221;. Then when I took that off i got my second compiling error &#8216;prog_uint16_t&#8217; does not name a type. I am nont sure where I did wrong. Can you be more specific on the IRAnalysis Python script ?<br />
+  Many thanks,<br />
+        Andy</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1506#respond' onclick='return addComment.moveForm( "comment-1506", "1506", "respond", "371" )' aria-label='Reply to Andy'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-2" id="li-comment-1507" class="clearfix">
+	     	<div id="comment-1507" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					September 26, 2015	  		     		<p>Hi Andy!</p>
+<p>Sorry about the confusion.</p>
+<p>The raw-buff files should all be together in one directory, with no other files, wherever you want. The path to that directory should be passed to the <code>IRAnalysis</code> script via the <code>--dumps-dir</code> flag.</p>
+<p>If you have any more trouble with it, feel free to share your raw-buff file and the command-line you try to execute.</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1507#respond' onclick='return addComment.moveForm( "comment-1507", "1507", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment odd alt depth-3" id="li-comment-1508" class="clearfix">
+	     	<div id="comment-1508" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Andy</span><br />
+					September 26, 2015	  		     		<p>Hi,</p>
+<p>Sorry I am still confused. So am I supposed to copy the code from iranalysis.py and execute it in the arduino ide?<br />
+   heres my raw code i got from iracrev<br />
+0x25D5AC5F (32 bits)<br />
+Raw (100): -7142 3400 -1700 450 -1250 400 -1300 450 -400 450 -450 400 -450 400 -1300 400 -450 450 -400 450 -1300 400 -1300 400 -450 400 -1300 400 -450 400 -500 400 -1300 400 -1300 400 -450 400 -1300 450 -1300 400 -450 400 -450 400 -1300 450 -400 450 -450 400 -1300 400 -450 400 -450 400 -450 450 -400 450 -450 400 -450 400 -450 450 -400 450 -400 450 -450 400 -450 400 -450 400 -450 450 -400 450 -450 400 -450 400 -450 400 -450 400 -450 400 -450 450 -1300 400 -450 400 -450 400</p>
+<p>how do i generate a code from this that i can replace it in the uSendBuff_Toggle_Cool_Auto_25 function in the iracsender code??</p>
+<p>Thank you!<br />
+       Andy</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1508#respond' onclick='return addComment.moveForm( "comment-1508", "1508", "respond", "371" )' aria-label='Reply to Andy'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-4" id="li-comment-1509" class="clearfix">
+	     	<div id="comment-1509" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					September 26, 2015	  		     		<p>The IRAnalysis.py script is pretty lazy actually. All it intended to do is to write the generated Arduino array(s) to stdout. You are left with copying it from the output of the script to the Arduino code, in the appropriate location.</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1509#respond' onclick='return addComment.moveForm( "comment-1509", "1509", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment odd alt depth-5" id="li-comment-1514" class="clearfix">
+	     	<div id="comment-1514" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Andy</span><br />
+					September 28, 2015	  		     		<p>Hi sorry I was confused about python before<br />
+     now executing it, i got an error<br />
+PS C:\Users\YW\temp\stuff&gt; python IRAnalysis.py<br />
+usage: IRAnalysis.py [-h] [-d DUMPS_DIR] {graph,code} &#8230;<br />
+IRAnalysis.py: error: too few arguments</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+										   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-5" id="li-comment-1515" class="clearfix">
+	     	<div id="comment-1515" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					September 28, 2015	  		     		<p>What&#8217;s the exact command line you are trying to run?</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+										   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+ 
+	   <li class="comment odd alt depth-5" id="li-comment-1519" class="clearfix">
+	     	<div id="comment-1519" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Andy</span><br />
+					September 28, 2015	  		     		<p>I was running python IRAnalysis.py using powershell (not sure if this was right) and putting Leave-Cool-Auto-25 under directory C:\User\dumps</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+										   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-5" id="li-comment-1520" class="clearfix">
+	     	<div id="comment-1520" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					September 28, 2015	  		     		<p>powershell is fine. the command line should look something like this <code>python IRAnalysis.py --dumps-dir C:\User\dumps code</code> (note that the flag comes before the name of the command &#8211; this is the way the argparse module works with the way the parsers are defined here).</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+										   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+ 
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-1527" class="clearfix">
+	     	<div id="comment-1527" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Andy</span><br />
+					September 30, 2015	  		     		<p>Sorry to keep bothering you,<br />
+ here is what i got for entering that command<br />
+PS C:\Users\YW\temp\stuff&gt; python IRAnalysis.py &#8211;dumps-dir C:&#092;Users\YW\dumps code<br />
+Traceback (most recent call last):<br />
+  File &#8220;IRAnalysis.py&#8221;, line 154, in<br />
+    args.func(load_from_raw(args.dumps_dir))<br />
+  File &#8220;IRAnalysis.py&#8221;, line 118, in load_from_raw<br />
+    sample = AcSample(pwr, mode, fan, int(temp))<br />
+ValueError: invalid literal for int() with base 10: &#8217;25.txt&#8217;</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1527#respond' onclick='return addComment.moveForm( "comment-1527", "1527", "respond", "371" )' aria-label='Reply to Andy'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-2" id="li-comment-1528" class="clearfix">
+	     	<div id="comment-1528" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					September 30, 2015	  		     		<p>the files in the dumps directory should have no extension at all. this error indicates that the files have <code>.txt</code> extension.</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1528#respond' onclick='return addComment.moveForm( "comment-1528", "1528", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment odd alt depth-3" id="li-comment-1537" class="clearfix">
+	     	<div id="comment-1537" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4ab31721edb5790a4e350d7fb7328920?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Andy</span><br />
+					October 1, 2015	  		     		<p>Thank you!! I got this<br />
+PS C:\Users\YW\temp\stuff&gt; python IRAnalysis.py &#8211;dumps-dir C:&#092;Users\YW\dumps code<br />
+PROGMEM prog_uint16_t uSendBuff_Leave_Cool_Auto_25[] = {99, 3400, 1700, 450, 1250, 400, 1300, 450, 400, 450, 450, 400, 450, 400, 1300, 400, 450, 450, 400, 450, 1300, 400, 1300, 400, 450, 400, 1300, 400, 450, 400, 500, 400, 1300, 400, 1300, 400, 450, 400, 1300, 450, 1300, 400, 450, 400, 450, 400, 1300, 450, 400, 450, 450, 400, 1300, 400, 450, 400, 450, 400, 450, 450, 400, 450, 450, 400, 450, 400, 450, 450, 400, 450, 400, 450, 450, 400, 450, 400, 450, 400, 450, 450, 400, 450, 450, 400, 450, 400, 450, 400, 450, 400, 450, 400, 450, 450, 1300, 400, 450, 400, 450, 400};</p>
+<p>but when i tried put this into your irAcsender code, i got an error &#8216;prog_uint16_t&#8217; does not name a type</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1537#respond' onclick='return addComment.moveForm( "comment-1537", "1537", "respond", "371" )' aria-label='Reply to Andy'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-4" id="li-comment-1634" class="clearfix">
+	     	<div id="comment-1634" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					November 1, 2015	  		     		<p>Hi, sorry for the delay in response!</p>
+<p>I haven&#8217;t compiled this code for the Arduino for a while, so maybe things have changed in the Arduino environment and the PROGRAM stuff are broken now.</p>
+<p>I found this &#8211; <a href="https://github.com/arduino/Arduino/issues/2456" rel="nofollow">https://github.com/arduino/Arduino/issues/2456</a></p>
+<p>Can you try to follow the suggestions there and modify the generated code, and see if it works? If you get a successful result, I will appreciate the feedback to fix my code generation accordingly 🙂</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1634#respond' onclick='return addComment.moveForm( "comment-1634", "1634", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+ 
+	   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1656" class="clearfix">
+	     	<div id="comment-1656" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://0.gravatar.com/avatar/326f7464a361e4f727b453f6aa5f3740?s=65&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/326f7464a361e4f727b453f6aa5f3740?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Manav Jaiswal</span><br />
+					November 11, 2015	  		     		<p>Hello Itamar<br />
+I have Halcyon AC with Fujitsu Generic ac remote. I am getting 32 bit raw code each time. Its length is 116 when I OFF the AC. The OFF signal is working fine and I can turn the AC off with arduio. I don&#8217;t exactly know the length of other button press. At raw=255 I received signals of length 255 so I thought of increasing rawbuf. When I set rawbuf above 255, I am unable to receive raw code for other buttons except the same OFF signal of length 116. The code I receive at rawbuf &lt;= 255 doesn&#8217;t work. Please help.</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1656#respond' onclick='return addComment.moveForm( "comment-1656", "1656", "respond", "371" )' aria-label='Reply to Manav Jaiswal'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-2" id="li-comment-1660" class="clearfix">
+	     	<div id="comment-1660" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					November 13, 2015	  		     		<p>Hi Manav,<br />
+Sorry, but I haven&#8217;t got a clue why you are not receiving codes with rawbuf > 255.<br />
+What I would do in your situation is to go deeper into the <a href="https://github.com/z3t0/Arduino-IRremote" rel="nofollow">IRremote</a> library, and try to figure out how it&#8217;s working. Since 255 is MAXBYTE, I would look for byte-variables that are used when reading signals, to see if it&#8217;s limited because of something related to this.</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1660#respond' onclick='return addComment.moveForm( "comment-1660", "1660", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+ 
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-1664" class="clearfix">
+	     	<div id="comment-1664" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://2.gravatar.com/avatar/bb51b9fc062f35df8dc4c5be4269b2fb?s=65&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/bb51b9fc062f35df8dc4c5be4269b2fb?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Josh</span><br />
+					November 16, 2015	  		     		<p>Hello Itamar,<br />
+                  I need some help with your Python IRAnalysis part. So far I have been able to get raw code from iracrev. I saved the code under the name  Leave-Cool-Auto-25 under the directory C:\User\M.SartaJ Khan which also have your IRAnalysis python script. After that I tried running the command (like the one you adviced to andy)<br />
+PS C:\Users\M.SartaJ khan&gt; python IRAnalysis.py –dumps-dir C:\Users\M.SartaJ khan<br />
+I keep getting the following error:</p>
+<p>usage: IRAnalysis.py [-h] [-d DUMPS_DIR] {graph,code} &#8230;<br />
+IRAnalysis.py: error: invalid choice: &#8216;\x96dumps-dir&#8217; (choose from &#8216;graph&#8217;, &#8216;code&#8217;)</p>
+<p>Can you please guide me in the python part as I am totally new with this software. Thankyou</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1664#respond' onclick='return addComment.moveForm( "comment-1664", "1664", "respond", "371" )' aria-label='Reply to Josh'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-2" id="li-comment-1667" class="clearfix">
+	     	<div id="comment-1667" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					November 17, 2015	  		     		<p>Hi!</p>
+<p>Are you trying to generate Arduino code, or graph the the raw IR data?</p>
+<p>In any case, you should put the raw data file under a dedicate directory, so it&#8217;s the only file in the directory, e.g. <code>C:\User\M.SartaJ Khan\IR Data</code>.</p>
+<p>Then, for graphing that data, you would run the script like this: <code>C:\Users\M.SartaJ khan&gt; python IRAnalysis.py --dumps-dir "C:\Users\M.SartaJ khan\IR Data" graph</code></p>
+<p>Note that you should have two regular <code>-</code> symbols before the <code>dumps-dir</code> flag (and not one weird <code>-</code> which translates to <code>\x96</code> and confuses Python), and the path should be quoted if it contains spaces, and the command should be specified after it (e.g. <code>graph</code> in this case, or <code>code</code> if you&#8217;d like code generation).</p>
+<p>Also note that if you have a recent version of the Arduino compiler, the generated code might not work for you, as the case for Andy. If you run into the same issue, and you&#8217;re able to find a way to change the generated Arduino code to fix it, please let me know. I&#8217;d love to fix the code generation so it works again.</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1667#respond' onclick='return addComment.moveForm( "comment-1667", "1667", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+ 
+	   <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1669" class="clearfix">
+	     	<div id="comment-1669" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://2.gravatar.com/avatar/bb51b9fc062f35df8dc4c5be4269b2fb?s=65&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/bb51b9fc062f35df8dc4c5be4269b2fb?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Josh</span><br />
+					November 17, 2015	  		     		<p>Hi Itamar,<br />
+             Thanks for replying so fast, Actually I&#8217;m trying to generate code. I saved my raw IR data in a dedicate directory, so it’s the only file in the directory, i.e. C:\User\M.SartaJ Khan\IR Data. After that I run the command as to your instruction C:UsersM.SartaJ khan&gt; python IRAnalysis.py &#8211;dumps-dir &#8220;C:UsersM.SartaJ khanIR Data&#8221; code</p>
+<p>This is what I&#8217;m getting upon running it<br />
+prog_uint16_t * getAcSendBuff() {<br />
+        return 0;<br />
+}</p>
+<p>It&#8217;s empty. I am unable to get the code to replace it in the uSendBuff_Toggle_Cool_Auto_25 function in the iracsender code??<br />
+I saved the file under the name :Toggle-Cool-Auto-25 with atleast 3 sample Raw IR codes</p>
+<p>Thank you.<br />
+Josh</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1669#respond' onclick='return addComment.moveForm( "comment-1669", "1669", "respond", "371" )' aria-label='Reply to Josh'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-2" id="li-comment-1671" class="clearfix">
+	     	<div id="comment-1671" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					November 17, 2015	  		     		<p>Hi Josh,<br />
+Can you paste the output of running the <code>dir</code> command on the <code>IR Data</code> dir, and also any output of the IRAnalysis script?</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1671#respond' onclick='return addComment.moveForm( "comment-1671", "1671", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+ 
+	   <li class="comment odd alt thread-even depth-1" id="li-comment-1674" class="clearfix">
+	     	<div id="comment-1674" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://2.gravatar.com/avatar/bb51b9fc062f35df8dc4c5be4269b2fb?s=65&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/bb51b9fc062f35df8dc4c5be4269b2fb?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Josh</span><br />
+					November 18, 2015	  		     		<p>Hi Itamar,<br />
+         Sorry I hope I&#8217;m not disturbing you a lot.<br />
+On running the dir command this is what i got<br />
+PS C:\Users\Project&gt; dir</p>
+<p><code>Directory: C:\Users\Project<br />
+</code></p>
+<p>Mode                LastWriteTime     Length Name<br />
+&#8212;-                &#8212;&#8212;&#8212;&#8212;-     &#8212;&#8212; &#8212;-<br />
+-a&#8212;        31/10/2015   1:08 AM       6435 IRAnalysis.py<br />
+-a&#8212;        18/11/2015  12:29 AM       1510 Toggle-Cool-Auto-25.txt</p>
+<p>I am unable to get any output of IRAnalysis script.<br />
+Upon running the command All I get is this<br />
+PS C:\Users\Project&gt; python IRAnalysis.py &#8211;dumps-dir  &#8220;C:UsersProject&#8221; code</p>
+<p>prog_uint16_t * getAcSendBuff() {<br />
+        return 0;<br />
+}</p>
+<p>It&#8217;s empty again. I have created an entirely new directory under the name Project which only have two files IRAnalysis script and my raw IR code file<br />
+Thank you.<br />
+Josh</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1674#respond' onclick='return addComment.moveForm( "comment-1674", "1674", "respond", "371" )' aria-label='Reply to Josh'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-2" id="li-comment-1675" class="clearfix">
+	     	<div id="comment-1675" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					November 18, 2015	  		     		<p>Not disturbing at all 🙂</p>
+<p>Try removing the &#8220;.txt&#8221; extension from the filename and try again.</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1675#respond' onclick='return addComment.moveForm( "comment-1675", "1675", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment odd alt depth-3" id="li-comment-1676" class="clearfix">
+	     	<div id="comment-1676" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://2.gravatar.com/avatar/bb51b9fc062f35df8dc4c5be4269b2fb?s=65&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/bb51b9fc062f35df8dc4c5be4269b2fb?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author">Josh</span><br />
+					November 18, 2015	  		     		<p>After removing the .txt extension<br />
+PS C:\Users\Project&gt; dir</p>
+<p><code>Directory: C:\Users\Project<br />
+</code></p>
+<p>Mode                LastWriteTime     Length Name<br />
+&#8212;-                &#8212;&#8212;&#8212;&#8212;-     &#8212;&#8212; &#8212;-<br />
+-a&#8212;        31/10/2015   1:08 AM       6435 IRAnalysis.py<br />
+-a&#8212;        18/11/2015   4:16 PM        Toggle-Cool-Auto-25</p>
+<p>PS C:\Users\Project&gt; python IRAnalysis.py &#8211;dumps-dir  &#8220;C:UsersProject&#8221; code</p>
+<p>prog_uint16_t * getAcSendBuff() {<br />
+        return 0;<br />
+}</p>
+<p>It&#8217;s still empty.<br />
+The data I have saved in Toggle-Cool-Auto-25 is as follows:<br />
+E458A050<br />
+0xE458A050 (32 bits)<br />
+Raw (101): -3920 5700 -2550 400 -350 400 -950 350 -950 400 -350 400 -900 400 -350 400 -350 400 -350 400 -350 400 -900 400 -350 400 -350 400 -950 350 -400 350 -400 350 -400 350 -400 350 -950 400 -350 400 -350 350 -400 350 -400 350 -400 350 -400 350 -400 350 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -900 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -900 400 -350 400 -350 400 -350 400 -950<br />
+E458A050<br />
+0xE458A050 (32 bits)<br />
+Raw (101): -35558 5700 -2550 350 -400 350 -950 400 -950 350 -400 350 -950 400 -350 350 -400 350 -400 350 -400 350 -950 400 -350 400 -350 400 -900 400 -350 400 -350 400 -350 400 -350 400 -950 350 -400 350 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 400 -350 350 -400 350 -400 350 -400 350 -400 350 -400 350 -950 400 -350 400 -350 350 -400 350 -400 350 -400 350 -400 350 -400 350 -950 400 -350 400 -350 350 -400 350 -950<br />
+E458A050<br />
+0xE458A050 (32 bits)<br />
+Raw (101): -45616 5700 -2600 350 -400 350 -950 350 -950 400 -350 400 -950 350 -400 350 -400 350 -400 350 -350 400 -950 350 -400 350 -400 350 -950 350 -400 350 -400 350 -400 350 -400 350 -950 400 -350 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -400 350 -350 400 -350 400 -350 350 -1000 350 -400 350 -400 350 -400 350 -400 350 -400 350 -350 400 -350 350 -1000 350 -400 350 -400 350 -400 350 -950</p>
+<p>Thank you</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1676#respond' onclick='return addComment.moveForm( "comment-1676", "1676", "respond", "371" )' aria-label='Reply to Josh'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	<ul class="children">
+ 
+	   <li class="comment byuser comment-author-itamar bypostauthor even depth-4" id="li-comment-1681" class="clearfix">
+	     	<div id="comment-1681" class="comment-body clearfix">
+	      		<div class="wrapper">
+	      			<div class="comment-author vcard">
+	  	         		<img alt='' src='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=65&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dee57780bca058d21ffeb1c9bd50ba86?s=130&amp;d=mm&amp;r=g 2x' class='avatar avatar-65 photo' height='65' width='65' />	  	  				
+	  	      		</div>
+	  		      		      	
+	  		     	<div class="extra-wrap">
+					<span class="author"><a href='https://www.ostricher.com/' rel='external nofollow' class='url'>Itamar Ostricher</a></span><br />
+					November 20, 2015	  		     		<p>Hi,</p>
+<p>Now in the output of your <code>dir</code> command I see that the <code>IRAnalysis.py</code> script is also there, together with the IR data file. The script fails if the <code>dumps-dir</code> contains anything other than what it expects (yes, I know, it&#8217;s not very robust..).</p>
+<p>I know your IR data is valid, because I copied it into a file named <code>Toggle-Cool-Auto-25</code> with no other files in a directory called <code>IR_data</code>, and ran <code>python IRAnalysis.py --dumps-dir IR_data code</code>, and got non-empty output:</p>
+<pre class="brush: cpp; title: ; notranslate" title="">
+PROGMEM prog_uint16_t uSendBuff_Toggle_Cool_Auto_25[] = {100, 5700, 2550, 350, 400, 350, 950, 350, 950, 400, 350, 400, 950, 400, 350, 350, 400, 350, 400, 350, 350, 400, 950, 400, 350, 400, 350, 400, 950, 350, 400, 350, 400, 350, 400, 350, 400, 350, 950, 400, 350, 350, 350, 350, 400, 350, 400, 350, 400, 350, 400, 350, 400, 350, 350, 400, 350, 400, 350, 400, 350, 400, 350, 400, 350, 350, 400, 350, 400, 350, 350, 400, 350, 400, 350, 350, 950, 400, 350, 400, 350, 350, 400, 350, 400, 350, 400, 350, 350, 400, 350, 350, 950, 400, 350, 400, 350, 350, 400, 350, 950};
+
+prog_uint16_t * getAcSendBuff() {
+	if ( (Toggle == pwr) &amp;&amp; (Cool == mode) &amp;&amp;(Auto == fan) &amp;&amp; (25 == temp) ) { return uSendBuff_Toggle_Cool_Auto_25; }
+	return 0;
+}
+</pre>
+<p>So try moving the data file to a sub-directory and running again with the <code>--dumps-dir</code> pointing to that sub-directory.</p>
+	     	
+	  		     	</div>
+	  		    </div>
+		     	<div class="wrapper">
+				  	<div class="reply">
+				    							
+						<a rel='nofollow' class='comment-reply-link' href='https://www.ostricher.com/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/?replytocom=1681#respond' onclick='return addComment.moveForm( "comment-1681", "1681", "respond", "371" )' aria-label='Reply to Itamar Ostricher'>Reply <span><i class="icon-reply"></i></span></a>				   	</div>
+			 	</div>
+	    	</div>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul>
+		<div class="pagination">
+		   
+		</div>
+	</div>
+		
+
+	
+		<div id="respond" class="comment-respond">
+							<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2013/09/using-an-arduino-to-reverse-engineer-my-ac-remote/#respond" style="display:none;">Cancel reply</a></small></h3>
+						<form id="commentform" class="comment-form">
+				<iframe src="https://jetpack.wordpress.com/jetpack-comment/?blogid=73215231&#038;postid=371&#038;comment_registration=0&#038;require_name_email=0&#038;stc_enabled=1&#038;stb_enabled=1&#038;show_avatars=1&#038;avatar_default=mystery&#038;greeting=Leave+a+Reply&#038;greeting_reply=Leave+a+Reply+to+%25s&#038;color_scheme=light&#038;lang=en_US&#038;jetpack_version=4.9&#038;sig=e76bdfc5a16099184d9d15fb08e3d8261003d20c#parent=http%3A%2F%2Fwww.ostricher.com%2F2013%2F09%2Fusing-an-arduino-to-reverse-engineer-my-ac-remote%2F" style="width:100%; height: 430px; border:0;" name="jetpack_remote_comment" class="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+				<!--[if !IE]><!-->
+				<script>
+					document.addEventListener( 'DOMContentLoaded', function () {
+						var commentForms = document.getElementsByClassName( 'jetpack_remote_comment' );
+						for ( var i = 0; i < commentForms.length; i++ ) {
+							commentForms[i].allowTransparency = false;
+							commentForms[i].scrolling = 'no';
+						}
+					} );
+				</script>
+				<!--<![endif]-->
+			</form>
+		</div>
+
+		
+		<input type="hidden" name="comment_parent" id="comment_parent" value="" />
+
+		                    </div>
+                    <div class="span4 sidebar" id="sidebar">
+                        <div id="social_networks-2" class="widget">			<!-- BEGIN SOCIAL NETWORKS -->
+						
+			<div class="social social__list unstyled">
+				
+				    						
+																<a target="_blank" class="icon-facebook icon-2x social_link social_link__facebook" data-rel="tooltip" data-original-title="facebook" href="https://www.facebook.com/Ostrich.IO">
+							</a>
+																				
+								    						
+																<a target="_blank" class="icon-twitter icon-2x social_link social_link__twitter" data-rel="tooltip" data-original-title="twitter" href="https://twitter.com/OstricherIO">
+							</a>
+																				
+								    						    						    						    						    						    						    						
+																<a target="_blank" class="icon-gplus icon-2x social_link social_link__gplus" data-rel="tooltip" data-original-title="gplus" href="https://plus.google.com/+OstricherIO">
+							</a>
+																				
+								    						    						    						    						
+																<a target="_blank" class="icon-rss icon-2x social_link social_link__rss" data-rel="tooltip" data-original-title="rss" href="https://www.ostricher.com/feed/">
+							</a>
+																				
+								    						    							      
+   		</div>
+   		<!-- END SOCIAL NETWORKS -->
+      
+		</div><div id="mc4wp_form_widget-2" class="widget"><h5>Sign up for the newsletter</h5><script type="text/javascript">(function() {
+	if (!window.mc4wp) {
+		window.mc4wp = {
+			listeners: [],
+			forms    : {
+				on: function (event, callback) {
+					window.mc4wp.listeners.push({
+						event   : event,
+						callback: callback
+					});
+				}
+			}
+		}
+	}
+})();
+</script><!-- MailChimp for WordPress v4.1.3 - https://wordpress.org/plugins/mailchimp-for-wp/ --><form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-1909 mc4wp-form-basic" method="post" data-id="1909" data-name="Default sign-up form" ><div class="mc4wp-form-fields"><p>
+	<label for="mc4wp_email">Email address: </label>
+	<input type="email" id="mc4wp_email" name="EMAIL" placeholder="Your email address" required />
+</p>
+<p>
+    <label for="mc4wp_name">Tell me your name (if you want to):</label>
+    <input type="text" id="mc4wp_name" name="NAME" placeholder="Your name" />
+</p>
+
+<p>
+	<input type="submit" value="Sign up" />
+</p><div style="display: none;"><input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></div><input type="hidden" name="_mc4wp_timestamp" value="1525693161" /><input type="hidden" name="_mc4wp_form_id" value="1909" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" /></div><div class="mc4wp-response"></div></form><!-- / MailChimp for WordPress Plugin --></div>		<div id="my-recent-comments-2" class="widget">			<h5>Recent Comments</h5>		<ul class="comments-custom unstyled">			
+      <li class="comments-custom_li">
+			
+						
+			<div class="small"><i class="icon-comment-alt"></i> Itamar Ostricher | <time>2016-03-17 06:22:34</time></div>
+      	<div class="clear"></div>
+			<div class="comments-custom_txt">
+				<a href="https://www.ostricher.com/2013/09/my-arduino-powered-ac-control/#comment-1844" title="Go to this comment">Yes, you can do signal processing to detect specific frequency beeps, ...</a>
+			</div>
+		</li>
+		
+   			
+      <li class="comments-custom_li">
+			
+						
+			<div class="small"><i class="icon-comment-alt"></i> eddie | <time>2016-03-15 17:59:58</time></div>
+      	<div class="clear"></div>
+			<div class="comments-custom_txt">
+				<a href="https://www.ostricher.com/2013/09/my-arduino-powered-ac-control/#comment-1843" title="Go to this comment">Hi Can I just Check that is there like specific frequency beep  to spe...</a>
+			</div>
+		</li>
+		
+   			
+      <li class="comments-custom_li">
+			
+						
+			<div class="small"><i class="icon-comment-alt"></i> FotoJournal | <time>2016-01-15 00:59:22</time></div>
+      	<div class="clear"></div>
+			<div class="comments-custom_txt">
+				<a href="https://www.ostricher.com/2015/06/how-to-use-ssh-with-multiple-github-accounts/#comment-1807" title="Go to this comment">Also work remembering that you'll need to be added to the repo as a co...</a>
+			</div>
+		</li>
+		
+   			
+      <li class="comments-custom_li">
+			
+						
+			<div class="small"><i class="icon-comment-alt"></i> mostlybinary | <time>2015-12-04 21:54:39</time></div>
+      	<div class="clear"></div>
+			<div class="comments-custom_txt">
+				<a href="https://www.ostricher.com/2015/11/meteor-todo-app-with-react-tutorial/#comment-1729" title="Go to this comment">As for the front-end frameworks, Meteor is committed to supporting all...</a>
+			</div>
+		</li>
+		
+   			
+      <li class="comments-custom_li">
+			
+						
+			<div class="small"><i class="icon-comment-alt"></i> Matthew (@MatthewMetzger) | <time>2015-11-30 04:42:36</time></div>
+      	<div class="clear"></div>
+			<div class="comments-custom_txt">
+				<a href="https://www.ostricher.com/2015/11/meteor-coursera-course/#comment-1715" title="Go to this comment">I agree with your summary. I just finished week two and I am liking th...</a>
+			</div>
+		</li>
+		
+   		</ul>
+		</div>		<div id="recent-posts-3" class="widget">		<h5>Recent Posts</h5>		<ul>
+					<li>
+				<a href="https://www.ostricher.com/2016/04/go-plain-ubiquitous-plaintext-capture-part-1-nvalt/">Go Plain Ubiquitous Plaintext Capture, Part 1: nvALT</a>
+							<span class="post-date">April 9, 2016</span>
+						</li>
+					<li>
+				<a href="https://www.ostricher.com/2016/03/get-safe-paths-from-arbitrary-strings-in-python/">Get Safe Paths From Arbitrary Strings In Python</a>
+							<span class="post-date">March 30, 2016</span>
+						</li>
+					<li>
+				<a href="https://www.ostricher.com/2016/03/migrating-kambatz-meteor-app-to-galaxy/">Migrating Kambatz Meteor App to Galaxy</a>
+							<span class="post-date">March 27, 2016</span>
+						</li>
+				</ul>
+		</div>		<div id="text-2" class="widget"><h5>Buy Me Coffee!</h5>			<div class="textwidget"><p align="center">
+More coffee == more content!<br />
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AXPTQUWH26Y5A&lc=IL&item_name=ItamarO%20%40%20The%20Ostrich&item_number=itamaro%2ethe%2eostrich%C2%A4cy_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" target='blank'><img src="https://i1.wp.com/www.paypal.com/en_US/i/btn/x-click-but04.gif?w=900&#038;ssl=1" data-recalc-dims="1" /></a>
+</p></div>
+		</div><div id="text-4" class="widget"><h5>Paying The Bills</h5>			<div class="textwidget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ostrich-sidebar -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8654111040751380"
+     data-ad-slot="9189217750"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</div><div id="text-3" class="widget"><h5>Copyright Information</h5>			<div class="textwidget"><p align="center">
+<a href="http://creativecommons.org/licenses/by/4.0/" onclick="__gaTracker('send', 'event', 'outbound-widget', 'http://creativecommons.org/licenses/by/4.0/', '');" rel="license"><img alt="Creative Commons License" style="border-width:0" src="https://i0.wp.com/i.creativecommons.org/l/by/4.0/88x31.png?w=900&#038;ssl=1" data-recalc-dims="1" /></a><br /><span>The Ostrich</span> by <a href="https://www.ostricher.com/" rel="cc:attributionURL">Itamar Ostricher</a> is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" onclick="__gaTracker('send', 'event', 'outbound-widget', 'http://creativecommons.org/licenses/by/4.0/', 'Creative Commons Attribution 4.0 International License');" rel="license">Creative Commons Attribution 4.0 International License</a>.
+</p></div>
+		</div>                    </div>
+					                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+
+
+<div class="lowestfooter">
+	<div class="container">
+<div class="row-fluid copyright">
+    <div class="span6">
+	    </div>
+    <div class="span6">
+    	<div id="footer-text" class="footer-text">
+		
+			Site by <a href="http://www.gootte.com" target="_blank">Gootte</a>		</div>    </div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--#main-->	
+	
+	<div id="back-top-wrapper" class="visible-desktop">
+	    <p id="back-top">
+	        <a href="#top"><span></span></a>
+	    </p>
+	</div>
+	<div style="display:none">
+	<div class="grofile-hash-map-dee57780bca058d21ffeb1c9bd50ba86">
+	</div>
+	<div class="grofile-hash-map-0b735148ca108614ab332263969434bb">
+	</div>
+	<div class="grofile-hash-map-c1aaeb0a03db87c6761dc53982bb6180">
+	</div>
+	<div class="grofile-hash-map-4ab31721edb5790a4e350d7fb7328920">
+	</div>
+	<div class="grofile-hash-map-326f7464a361e4f727b453f6aa5f3740">
+	</div>
+	<div class="grofile-hash-map-bb51b9fc062f35df8dc4c5be4269b2fb">
+	</div>
+	</div>
+<script type="text/javascript">(function() {function addEventListener(element,event,handler) {
+	if(element.addEventListener) {
+		element.addEventListener(event,handler, false);
+	} else if(element.attachEvent){
+		element.attachEvent('on'+event,handler);
+	}
+}function maybePrefixUrlField() {
+	if(this.value.trim() !== '' && this.value.indexOf('http') !== 0) {
+		this.value = "http://" + this.value;
+	}
+}
+
+var urlFields = document.querySelectorAll('.mc4wp-form input[type="url"]');
+if( urlFields && urlFields.length > 0 ) {
+	for( var j=0; j < urlFields.length; j++ ) {
+		addEventListener(urlFields[j],'blur',maybePrefixUrlField);
+	}
+}/* test if browser supports date fields */
+var testInput = document.createElement('input');
+testInput.setAttribute('type', 'date');
+if( testInput.type !== 'date') {
+
+	/* add placeholder & pattern to all date fields */
+	var dateFields = document.querySelectorAll('.mc4wp-form input[type="date"]');
+	for(var i=0; i<dateFields.length; i++) {
+		if(!dateFields[i].placeholder) {
+			dateFields[i].placeholder = 'YYYY-MM-DD';
+		}
+		if(!dateFields[i].pattern) {
+			dateFields[i].pattern = '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])';
+		}
+	}
+}
+
+})();</script><script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/akismet/_inc/form.js?ver=3.3.2'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCpp.js?ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://www.ostricher.com/io-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://www.ostricher.com/io-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type='text/javascript' src='https://www.ostricher.com/wp-includes/js/comment-reply.min.js?ver=4.7.10'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/jetpack/modules/photon/photon.js?ver=20130122'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.ostricher.com\/io-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}},"sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.5'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/easy-image-display/js/jquery.colorbox-min.js?ver=4.7.10'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201819'></script>
+<script type='text/javascript' src='https://s.gravatar.com/js/gprofiles.js?ver=2018Mayaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/jetpack/modules/wpgroho.js?ver=4.7.10'></script>
+<script type='text/javascript' src='https://www.ostricher.com/wp-includes/js/wp-embed.min.js?ver=4.7.10'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/js/jquery.easing.1.3.js?ver=1.3'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/js/jquery.flexnav.min.js?ver=3.1.5'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/js/jquery.magnificpopup.js?ver=0.9.9'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/js/jquery.plugins.js?ver=3.1.5'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/js/custom.js?ver=1.0'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/js/jquery.appear.js?ver=1.0.0'></script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/themes/BUZZBLOG-theme/bootstrap/js/bootstrap.min.js?ver=2.3.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var mc4wp_forms_config = [];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js?ver=4.1.3'></script>
+<!--[if lte IE 9]>
+<script type='text/javascript' src='https://www.ostricher.com/io-content/plugins/mailchimp-for-wp/assets/js/third-party/placeholders.min.js?ver=4.1.3'></script>
+<![endif]-->
+
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=73215231&postid=371&comment_registration=0&require_name_email=0&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=4.9&sig=e76bdfc5a16099184d9d15fb08e3d8261003d20c#parent=http%3A%2F%2Fwww.ostricher.com%2F2013%2F09%2Fusing-an-arduino-to-reverse-engineer-my-ac-remote%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=73215231&postid=371&comment_registration=0&require_name_email=0&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=4.9&sig=e76bdfc5a16099184d9d15fb08e3d8261003d20c#parent=http%3A%2F%2Fwww.ostricher.com%2F2013%2F09%2Fusing-an-arduino-to-reverse-engineer-my-ac-remote%2F";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	<script type='text/javascript' src='https://stats.wp.com/e-201819.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.9',blog:'73215231',post:'371',tz:'3',srv:'www.ostricher.com'} ]);
+	_stq.push([ 'clickTrackerInit', '73215231', '371' ]);
+</script>
+ <!-- this is used by many Wordpress features and for plugins to work properly -->
+
+
+</body>
+</html>
+<!-- Dynamic page generated in 1.498 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2018-05-07 14:39:21 -->
+
+<!-- Compression = gzip -->
