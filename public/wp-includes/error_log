@@ -1,0 +1,33 @@
+[10-Aug-2014 15:58:18 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/wp-includes/general-template.php on line 1608
+[10-Aug-2014 15:58:19 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home4/itamaro/public_html/wp-includes/nav-menu-template.php on line 16
+[10-Aug-2014 15:58:26 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/wp-includes/author-template.php on line 459
+[10-Aug-2014 15:58:31 America/Chicago] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home4/itamaro/public_html/wp-includes/class-simplepie.php on line 5
+[10-Aug-2014 15:58:31 America/Chicago] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home4/itamaro/public_html/wp-includes/class-simplepie.php on line 5
+[10-Aug-2014 15:58:31 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/SimplePie/Misc.php' (include_path='.:/opt/php54/lib/php') in /home4/itamaro/public_html/wp-includes/class-simplepie.php on line 5
+[10-Aug-2014 15:58:38 America/Chicago] PHP Fatal error:  Class 'WP_Widget' not found in /home4/itamaro/public_html/wp-includes/default-widgets.php on line 14
+[10-Aug-2014 15:58:40 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home4/itamaro/public_html/wp-includes/default-filters.php on line 17
+[10-Aug-2014 15:59:01 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home4/itamaro/public_html/wp-includes/registration.php on line 7
+[10-Aug-2014 15:59:07 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/wp-includes/canonical.php on line 530
+[10-Aug-2014 15:59:15 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/wp-includes/theme.php on line 671
+[10-Aug-2014 15:59:19 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home4/itamaro/public_html/wp-includes/ms-default-filters.php on line 17
+[10-Aug-2014 15:59:20 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/wp-includes/ms-default-constants.php on line 151
+[10-Aug-2014 15:59:21 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/wp-includes/kses.php on line 1422
+[10-Aug-2014 15:59:24 America/Chicago] PHP Fatal error:  Call to undefined function is_admin() in /home4/itamaro/public_html/wp-includes/vars.php on line 23
+[10-Aug-2014 15:59:25 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/wp-includes/taxonomy.php on line 129
+[10-Aug-2014 15:59:30 America/Chicago] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home4/itamaro/public_html/wp-includes/functions.php on line 8
+[10-Aug-2014 15:59:30 America/Chicago] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home4/itamaro/public_html/wp-includes/functions.php on line 8
+[10-Aug-2014 15:59:30 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/opt/php54/lib/php') in /home4/itamaro/public_html/wp-includes/functions.php on line 8
+[10-Aug-2014 15:59:32 America/Chicago] PHP Fatal error:  Class 'IXR_Server' not found in /home4/itamaro/public_html/wp-includes/class-wp-xmlrpc-server.php on line 23
+[10-Aug-2014 15:59:38 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home4/itamaro/public_html/wp-includes/category-template.php on line 886
+[10-Aug-2014 15:59:39 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home4/itamaro/public_html/wp-includes/shortcodes.php on line 407
+[10-Aug-2014 15:59:46 America/Chicago] PHP Fatal error:  Call to undefined function is_robots() in /home4/itamaro/public_html/wp-includes/template-loader.php on line 28
+[10-Aug-2014 15:59:52 America/Chicago] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home4/itamaro/public_html/wp-includes/script-loader.php on line 25
+[10-Aug-2014 15:59:52 America/Chicago] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home4/itamaro/public_html/wp-includes/script-loader.php on line 25
+[10-Aug-2014 15:59:52 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/opt/php54/lib/php') in /home4/itamaro/public_html/wp-includes/script-loader.php on line 25
+[10-Aug-2014 15:59:53 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home4/itamaro/public_html/wp-includes/rss.php on line 19
+[10-Aug-2014 16:00:13 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home4/itamaro/public_html/wp-includes/feed-atom.php on line 8
+[10-Aug-2014 16:00:17 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home4/itamaro/public_html/wp-includes/feed-rss2.php on line 8
+[10-Aug-2014 16:00:18 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home4/itamaro/public_html/wp-includes/feed-rdf.php on line 8
+[10-Aug-2014 16:00:23 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home4/itamaro/public_html/wp-includes/rss-functions.php on line 8
+[10-Aug-2014 16:00:24 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home4/itamaro/public_html/wp-includes/feed-rss.php on line 8
+[10-Aug-2014 16:00:28 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home4/itamaro/public_html/wp-includes/post.php on line 167
